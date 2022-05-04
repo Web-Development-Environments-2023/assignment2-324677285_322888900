@@ -1,21 +1,126 @@
 <!DOCTYPE html>
 <html>
 	<head>
+
 		<script src="./jquery-3.4.1.slim.min.js"></script>
 		<script type="text/javascript" src="./app.js"></script>
+		<script type="text/javascript" src="./menu.js"></script>
+		<title>
+			Cool Packman game
+		</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="icon" type="image/png" href="media/logo.png" sizes="16x16">
+
 	</head>
 
 	<body>
-		<div id="score">
-			<label for="lblScore">SCORE:</label>
-			<input id="lblScore" type="text" />
+		<div id="header_div">
+			<header>
+				<h1 class="header_content">
+					Niv and Katya's Packman Game
+				</h1>
+			</header>
 		</div>
-		<div id="time">
-			<label for="lblTime">TIME:</label>
-			<input id="lblTime" type="text" />
+		<div if="menue">
+			<ul class="nav">
+				<li>
+					<button onclick="switchScreens('welcome')">
+						Welcome
+					</button>
+				</li>
+				<li>
+					<button onclick="switchScreens('about')">
+						About
+					</button>
+				</li>
+				<li>
+					<button onclick="switchScreens('login_screen')">
+						logIn
+					</button>
+				</li>
+				<li>
+					<button onclick="switchScreens('signin_screen')">
+						sighnIn
+					</button>
+				</li>
+				<li>
+					<button onclick="switchScreens('settings')">
+						Settings
+					</button>
+				</li>
+			</ul>
+			
 		</div>
-		<div id="game">
-			<canvas id="canvas" height="600" width="600"></canvas>
+		<div id="content">
+			<div class="screen" id="welcome" >
+				Welcome
+			</div>
+			<div class="screen" id="login_screen" style="display:none">
+				<h2>Login Page</h2><br>    
+				<div class="login_signin">    
+				<form id="login">    
+					<label><b>User Name     
+					</b>    
+					</label>    
+					<input type="text" name="Uname" class="input_box" id="user_name_login_box" placeholder="Username">    
+					<br><br>    
+					<label><b>Password     
+					</b>    
+					</label>    
+					<input type="Password" name="Pass" class="input_box" id="password_login_box" placeholder="Password">    
+					<br><br>    
+					<input type="button" name="log" id="login_button" value="Log In Here">       
+					<br><br>      
+				</form>   
+				</div>  
+				
+			</div>
+			<div class="screen" id="signin_screen" style="display:none">
+				<h2>Signin Page</h2><br>    
+				<div class="login_signin">    
+				<form id="signin">    
+					<label><b>User Name</b></label>  
+					<input type="text" name="Uname" class="input_box" id="user_name_signin_box" placeholder="Username">    
+					<br>
+					<br>    
+					<label><b>Password</b></label>        
+					<input type="Password" name="Pass" class="input_box" id="password_signin__box" placeholder="Password">    
+					<br>
+					<br>    
+					<label><b>Full Name</b></label>       
+					<input type="text" name="Fname" class="input_box" id="full_name_box" placeholder="Full name">    
+					<br>
+					<br> 
+					<label><b>Email</b></label>  
+					<br>   
+					<input type="text" name="email" class="input_box" id="email_box" placeholder="Email">    
+					<br>
+					<br> 
+					<input type="button" name="sgn" class="input_button" id="signin_button" value="Sign In Here">       
+					<br>
+					<br>      
+				</form> 
+			</div>
+			<div class="screen" id="settings" style="display:none">
+				Settings
+			</div>
+			<div class="screen" id="about" style="display:none">
+				About
+			</div>
+			<div class="screen" id="game" style="display:none">
+				<label for="lblScore">SCORE:</label>
+				<input id="lblScore" type="text" />
+				<label for="lblTime">TIME:</label>
+				<input id="lblTime" type="text" />
+				<canvas id="canvas" height="600" width="600"></canvas>
+			</div>
+		</div>
+		<div id="footer_div">
+			<footer>
+				<h1 class="footer_content">
+					Contact Us
+				</h1>
+			</footer>
 		</div>
 	</body>
 </html>

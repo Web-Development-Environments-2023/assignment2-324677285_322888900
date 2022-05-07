@@ -1,6 +1,4 @@
 
-localStorage.setItem("k","k")
-
 
 function hidePages(){
     $(".screen").hide()

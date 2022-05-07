@@ -5,6 +5,8 @@
 		<script src="./jquery-3.4.1.slim.min.js"></script>
 		<script type="text/javascript" src="./app.js"></script>
 		<script type="text/javascript" src="./menu.js"></script>
+		<script type="text/javascript" src="./log_sign_in.js"></script>
+		<script type="text/javascript" src="./about_modal.js"></script>
 		<title>
 			Cool Packman game
 		</title>
@@ -21,7 +23,7 @@
 				</h1>
 			</header>
 		</div>
-		<div if="menue">
+		<div id="menu">
 			<ul class="nav">
 				<li>
 					<button onclick="switchScreens('welcome')">
@@ -29,7 +31,7 @@
 					</button>
 				</li>
 				<li>
-					<button onclick="switchScreens('about')">
+					<button onclick="openAboutModal()">
 						About
 					</button>
 				</li>
@@ -53,7 +55,25 @@
 		</div>
 		<div id="content">
 			<div class="screen" id="welcome" >
-				Welcome
+				<h2>
+					Welcome to a very cool pacman game!
+				</h2>
+				<p>
+					To start the game you need first to log in
+				</p>
+				<br>
+				<button onclick="switchScreens('login_screen')">
+					Log in
+				</button>
+				<br>
+				<p>
+					Don't have an account yet? Sign in here:
+				</p>
+				<br>
+				<button onclick="switchScreens('signin_screen')">
+					Sighn in
+				</button>
+
 			</div>
 			<div class="screen" id="login_screen" style="display:none">
 				<h2>Login Page</h2><br>    
@@ -69,13 +89,14 @@
 					</label>    
 					<input type="Password" name="Pass" class="input_box" id="password_login_box" placeholder="Password">    
 					<br><br>    
-					<input type="button" name="log" id="login_button" value="Log In Here">       
+					<input type="button" name="log" class="input_button" id="login_button" value="Log In Here" onclick="log_into_system()">       
 					<br><br>      
 				</form>   
 				</div>  
 				
 			</div>
 			<div class="screen" id="signin_screen" style="display:none">
+				
 				<h2>Signin Page</h2><br>    
 				<div class="login_signin">    
 				<form id="signin">    
@@ -84,7 +105,7 @@
 					<br>
 					<br>    
 					<label><b>Password</b></label>        
-					<input type="Password" name="Pass" class="input_box" id="password_signin__box" placeholder="Password">    
+					<input type="Password" name="Pass" class="input_box" id="password_signin_box" placeholder="Password">    
 					<br>
 					<br>    
 					<label><b>Full Name</b></label>       
@@ -96,24 +117,36 @@
 					<input type="text" name="email" class="input_box" id="email_box" placeholder="Email">    
 					<br>
 					<br> 
-					<input type="button" name="sgn" class="input_button" id="signin_button" value="Sign In Here">       
+					<input type="button" name="sgn" class="input_button" id="signin_button" value="Sign In Here" onclick="sign_into_system()">       
 					<br>
 					<br>      
 				</form> 
 			</div>
+			</div>
 			<div class="screen" id="settings" style="display:none">
 				Settings
 			</div>
-			<div class="screen" id="about" style="display:none">
-				About
-			</div>
-			<div class="screen" id="game" style="display:none">
-				<label for="lblScore">SCORE:</label>
+			<dialog id="about_dialog">
+				<h3 style="text-align: center;">About us:</h3>
+				<p>We are Niv Fono and Katya Donchenko, third year students at BGU.</p>
+				<p>This game website is our second project in a web development course.</p>
+				<p>We used JQuery</p>
+				<br>
+				<button onclick="closeAboutModal()">Close dialog</button>
+				</dialog>
+			<div class="screen" id="game_screen" style="display:none">
+				<h2 style="color: blue;">
+					Game Started
+				</h2>
+				<label for="lblScore" style="color: blue;">SCORE:</label>
 				<input id="lblScore" type="text" />
-				<label for="lblTime">TIME:</label>
+				<label for="lblTime" style="color: blue;">TIME:</label>
 				<input id="lblTime" type="text" />
-				<canvas id="canvas" height="600" width="600"></canvas>
+				<canvas id="canvas" height="800" width="900" style="border:1px solid blue;"></canvas>
 			</div>
+		
+		
+		
 		</div>
 		<div id="footer_div">
 			<footer>

@@ -4,6 +4,7 @@
 
 		<script src="./jquery-3.4.1.slim.min.js"></script>
 		<script type="text/javascript" src="./app.js"></script>
+		<script type="text/javascript" src="./settings.js"></script>
 		<script type="text/javascript" src="./menu.js"></script>
 		<script type="text/javascript" src="./log_sign_in.js"></script>
 		<script type="text/javascript" src="./about_modal.js"></script>
@@ -42,7 +43,7 @@
 				</li>
 				<li>
 					<button onclick="switchScreens('signin_screen')">
-						sighnIn
+						signIn
 					</button>
 				</li>
 				<li>
@@ -53,6 +54,7 @@
 			</ul>
 			
 		</div>
+
 		<div id="content">
 			<div class="screen" id="welcome" >
 				<h2>
@@ -71,7 +73,7 @@
 				</p>
 				<br>
 				<button onclick="switchScreens('signin_screen')">
-					Sighn in
+					Sign in
 				</button>
 
 			</div>
@@ -124,7 +126,33 @@
 			</div>
 			</div>
 			<div class="screen" id="settings" style="display:none">
-				Settings
+				<h2>Settings</h2>
+				<div>
+				<form>
+
+					<label>
+						<input type="radio" name="choose_key" value="updown">
+						<img src="media/updown.jpg" height="300px" width="300px">
+					</label>
+
+					<label>
+						<input type="radio" name="choose_key" value="wrap">
+						<img src="media/wrap.jpg" height="300px" width="300px">
+					</label>
+
+				</form>
+
+<!--					<div class="slidecontainer" >-->
+<!--						<input type="range" min="1" max="100" value="50" class="slider" id="myRange">-->
+<!--						<p>Value: <span id="demo"></span></p>-->
+<!--					</div>-->
+
+				</div>
+
+
+
+
+
 			</div>
 			<dialog id="about_dialog">
 				<h3 style="text-align: center;">About us:</h3>

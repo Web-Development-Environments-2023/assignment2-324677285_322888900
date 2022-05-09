@@ -1,0 +1,147 @@
+  
+/* ---------------------------*-menue-style-*-------------------------------- */
+
+ul.nav {
+    padding-left: 0px;
+    background-color: #3D99CE;
+    text-align: center;
+  }
+  ul.nav > li {
+    display: inline-block;
+    padding: 10px 20px;
+  }
+  ul.nav > li:hover {
+    background-color: #2779BF;
+  }
+  ul.nav > li > button {
+    color: #2779BF;
+    text-decoration: none;
+  }
+
+  /* ---------------------------*-header-style-*-------------------------------- */
+
+  h1.header_content{
+    text-align: center;
+  }
+
+/* ---------------------------*-footer-style-*-------------------------------- */
+
+
+  h1.footer_content{
+    text-align: center;
+  }
+
+/* ---------------------------*-body style-*-------------------------------- */
+
+.screen{
+    text-align: center;
+}
+
+body  
+{  
+    margin: 0;  
+    padding: 0;  
+    background-color:#6abadeba;  
+    font-family: 'Arial';  
+}  
+
+
+/* ---------------------------login+signin screens-------------------------------- */
+.login_signin{  
+    width: 385px;  
+    overflow: hidden;  
+    margin: auto;  
+    margin: 20 0 0 450px;  
+    padding: 80px;  
+    background: #23463f;  
+    border-radius: 15px ;  
+      
+}  
+
+h2.screen{  
+text-align: center;  
+color: #277582;  
+padding: 20px;  
+}  
+
+.screen > div > form > label {  
+color: #08ffd1;  
+font-size: 17px;  
+}
+
+span.screen{  
+    color: white;  
+    font-size: 17px;  
+}  
+
+.input_box{
+    width: 300px;  
+    height: 30px;  
+    border: none;  
+    border-radius: 3px;  
+    padding-left: 8px;  
+}
+
+.input_button{
+    width: 300px;  
+    height: 30px;  
+    border: none;  
+    border-radius: 17px;  
+    padding-left: 7px;  
+    color: blue;  
+}
+
+.input_button:hover{
+    background-color: antiquewhite;
+}
+
+
+/* ---------------------------game screen-------------------------------- */
+
+#game_screen{
+  background-color: #000000;
+  height: auto;
+  width: auto;
+}
+
+
+/* ---------------------------modal screen--------------------- */
+
+
+
+
+/*--------------------------------------slider of number of balls--------------------*/
+/*.slidecontainer {*/
+/*    width: 100%;*/
+/*}*/
+
+/*.slider {*/
+/*    -webkit-appearance: none;*/
+/*    width: 100%;*/
+/*    height: 25px;*/
+/*    background: #d3d3d3;*/
+/*    outline: none;*/
+/*    opacity: 0.7;*/
+/*    -webkit-transition: .2s;*/
+/*    transition: opacity .2s;*/
+/*}*/
+
+/*.slider:hover {*/
+/*    opacity: 1;*/
+/*}*/
+
+/*.slider::-webkit-slider-thumb {*/
+/*    -webkit-appearance: none;*/
+/*    appearance: none;*/
+/*    width: 25px;*/
+/*    height: 25px;*/
+/*    background: #04AA6D;*/
+/*    cursor: pointer;*/
+/*}*/
+
+/*.slider::-moz-range-thumb {*/
+/*    width: 25px;*/
+/*    height: 25px;*/
+/*    background: #04AA6D;*/
+/*    cursor: pointer;*/
+/*}*/

@@ -8,6 +8,8 @@ var time_elapsed;
 var interval;
 var food_counter;
 var base_image = new Image();
+var currdirection="L"
+
 
 $(document).ready(function() {
 	context = canvas.getContext("2d");
@@ -64,8 +66,10 @@ function Start() {
 		}
 	}
 
-	shape.i = 14
-	shape.j = 14
+	shape.i = getRndInteger(13,15);//random number between
+	shape.j = getRndInteger(11,16);
+	console.log("i:"+shape.i)
+	console.log("j:"+shape.j)
 	pacman_remain--;
 	keysDown = {};
 	addEventListener(
@@ -95,6 +99,10 @@ function findRandomEmptyCell(board) {
 	return [i, j];
 }
 
+function getRndInteger(min, max) {
+	return Math.floor(Math.random() * (max - min) ) + min;
+}
+
 function GetKeyPressed() {
 	if (keysDown[38]) {
 		return 1;
@@ -115,7 +123,7 @@ function Draw() {
 	lblScore.value = score;
 	lblTime.value = time_elapsed;
 	pac_img = new Image()
-	pac_img.src = 'media/pacman_icon.png'
+	pac_img.src = 'media/pacman_icon_L.png'
 	let is_painted=false
 	let last_hope=[0,0]
 
@@ -138,15 +146,29 @@ function Draw() {
 				context.fill();
 			}
 			 else if(board[i][j] == '1' ||board[i][j] == '_' ){
-				 console.log(i)
-				console.log(j)
+				 if(i === shape.i && j === shape.j){
 				// x=Math.random()
 				// if (x>0.2) {
-					console.log("herreeee")
-					base_image.src = 'media/pacman_icon.png';
-					context.drawImage(base_image, shape.i*30-5 , shape.j*30-5 , 20, 20);
+				if(currdirection=="R") {
+					base_image.src = 'media/pacman_icon_R.png';
+					context.drawImage(base_image, shape.i * 30 - 5, shape.j * 30 - 5, 20, 20);
+				}
+				else if (currdirection=="L"){
+					base_image.src = 'media/pacman_icon_L.png';
+					context.drawImage(base_image, shape.i * 30 - 5, shape.j * 30 - 5, 20, 20);
+				}
+				else if (currdirection=="D"){
+					base_image.src = 'media/pacman_icon_D.png';
+					context.drawImage(base_image, shape.i * 30 - 5, shape.j * 30 - 5, 20, 20);
+				}
+				else if (currdirection=="U"){
+					base_image.src = 'media/pacman_icon_U.png';
+					context.drawImage(base_image, shape.i * 30 - 5, shape.j * 30 - 5, 20, 20);
+				}
 
-				// }
+
+
+				}
 			 }
 
 		}
@@ -160,35 +182,34 @@ function Draw() {
 
 function UpdatePosition() {
 	board[shape.i][shape.j] = '_';
-	console.log("herreeee")
-	base_image.src = 'media/pacman_icon.png';
 	context.drawImage(base_image, shape.i , shape.j , 40, 40);
 	var x = GetKeyPressed();
 	if (x == 1) {
 		if (shape.j > 0 && board[shape.i][shape.j - 1] != 'X') {
 			shape.j--;
 			board[shape.i][shape.j] = '1';
-
+			currdirection="U"
 		}
 	}
 	if (x == 2) {
 		if (shape.j < board[0].length && board[shape.i][shape.j + 1] != 'X') {
 			shape.j++;
 			board[shape.i][shape.j] = '1';
-
+			currdirection="D"
 		}
 	}
 	if (x == 3) {
 		if (shape.i > 0 && board[shape.i - 1][shape.j] != 'X') {
 			shape.i--;
 			board[shape.i][shape.j] = '1';
-
+			currdirection="L"
 		}
 	}
 	if (x == 4) {
 		if (shape.i < board.length && board[shape.i + 1][shape.j] != 'X') {
 			shape.i++;
 			board[shape.i][shape.j] = '1';
+			currdirection="R"
 
 		}
 	}

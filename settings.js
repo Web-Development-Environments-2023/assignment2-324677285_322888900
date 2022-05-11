@@ -30,7 +30,9 @@ function selectRandomRadioButton(radioButtons) {
 function start_Game(){
     let timer=$("#GameTime").val()
     let numberofballs=$("#GameTime").val()
-    if(+timer==NaN || +numberofballs==NaN){
+    let Monsters= document.getElementsByClassName("monster_picker")
+    number_of_monsters=get_number_of_monsters(Monsters)
+    if(+timer==NaN || +numberofballs==NaN||number_of_monsters==0){
         alert("please enter valid numbers")
     }
     else{
@@ -38,7 +40,34 @@ function start_Game(){
             alert("please enter valid details")
         }
         else {
+            number_of_balls=numberofballs
         switchScreens("game_screen")
         }
     }
+}
+
+function get_number_of_monsters(Monsters){
+    for(i=0;i<Monsters.length;i++){
+        if (Monsters[i].checked==true){
+            if (Monsters[i].value=="one_monsters"){
+                return 1
+            }
+            if (Monsters[i].value=="two_monsters"){
+                return 2
+            }
+            if (Monsters[i].value=="three_monsters"){
+                return 3
+            }
+            if (Monsters[i].value=="four_monsters"){
+                return 4
+            }
+        }
+
+    }
+    return 0
+
+
+
+
+
 }

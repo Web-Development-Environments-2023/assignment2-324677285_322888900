@@ -131,7 +131,7 @@
 			</div>
 			<div class="screen" id="settings" style="display:none">
 				<h2>Settings</h2>
-				<div>
+				<div class="settings">
 				<form>
 					<label>
 						<input type="radio" name="choose_key" class="keys_picker" value="updown">
@@ -149,6 +149,51 @@
 					<label><b>Please enter game time in seconds (Minimum 60)</b></label>
 					<input type="text" name="Game Time" class="input_box" id="GameTime">
 					<br>
+
+					<label><b>Please choose balls colors</b></label>
+
+					<br>
+					<label><b>5 Points balls</b></label>
+					<form>
+						<label>
+							<input text="blue" type="radio" name="choose_5" class="choose_5" value="blue">
+							Blue
+						</label>
+
+						<label>
+							<input text="purple" type="radio" name="choose_5" class="choose_5" value="purple">
+							Purple
+						</label>
+					</form>
+					<label><b>10 Points balls</b></label>
+					<form>
+						<label>
+							<input text="red" type="radio" name="choose_15" class="choose_15" value="red">
+							Red
+						</label>
+
+						<label>
+							<input text="orange" type="radio" name="choose_15" class="choose_15" value="orange">
+							Orange
+						</label>
+					</form>
+					<label><b>25 Points balls</b></label>
+					<form>
+						<label>
+							<input text="white" type="radio" name="choose_25" class="choose_25" value="white">
+							White
+						</label>
+
+						<label>
+							<input text="green" type="radio" name="choose_25" class="choose_25" value="green">
+							Green
+						</label>
+					</form>
+
+
+
+
+
 					<label><b>Number Of Monsters</b></label>
 
 					<form>
@@ -174,7 +219,7 @@
 					</form>
 					<button id="Random_Settings" onclick="Random_Settings_Generator()">Enter Random Values</button>
 					<button id="start_Game" onclick="start_Game()">Start Game</button>
-
+				</div>
 				</div>
 
 

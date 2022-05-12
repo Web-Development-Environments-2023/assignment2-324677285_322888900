@@ -97,6 +97,20 @@ span.screen{
     background-color: antiquewhite;
 }
 
+/*------------------------------------------settings screen----------------*/
+
+.settings{
+    width:1000px;
+    overflow: hidden;
+    margin: auto;
+    margin: 20 0 0 450px;
+    padding: 80px;
+    background: #2c7264;
+    border-radius: 15px ;
+
+}
+
+
 
 /* ---------------------------game screen-------------------------------- */
 

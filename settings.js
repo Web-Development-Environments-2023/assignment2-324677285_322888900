@@ -14,10 +14,17 @@ function Random_Settings_Generator(){
     let Keys=document.getElementsByClassName("keys_picker")
     let NumOfBalls = document.getElementById("NumOfBalls");
     let Timer=document.getElementById("GameTime");
+    let fives=document.getElementsByClassName("choose_5")
+    let fifteens=document.getElementsByClassName("choose_15")
+    let twenty_fives=document.getElementsByClassName("choose_25")
+
     Timer.value=""+getRndInteger(60,200);
     NumOfBalls.value = ""+getRndInteger(50,90);
     selectRandomRadioButton(Monsters)
     selectRandomRadioButton(Keys)
+    selectRandomRadioButton(fives)
+    selectRandomRadioButton(fifteens)
+    selectRandomRadioButton(twenty_fives)
 
 }
 function selectRandomRadioButton(radioButtons) {
@@ -29,21 +36,38 @@ function selectRandomRadioButton(radioButtons) {
 //TODO: switch to game and pass and validate values
 function start_Game(){
     let timer=$("#GameTime").val()
-    let numberofballs=$("#GameTime").val()
+    let numberofballs=$("#NumOfBalls").val()
     let Monsters= document.getElementsByClassName("monster_picker")
+    let fives=document.getElementsByClassName("choose_5")
+    let fifteens=document.getElementsByClassName("choose_15")
+    let twenty_fives=document.getElementsByClassName("choose_25")
     number_of_monsters=get_number_of_monsters(Monsters)
-    if(+timer==NaN || +numberofballs==NaN||number_of_monsters==0){
-        alert("please enter valid numbers")
+    color_twenty_five_point_ball=get_Color(fives)
+    color_fifteen_point_ball=get_Color(fifteens)
+    color_five_point_ball=get_Color(twenty_fives)
+    if(+timer==NaN || +numberofballs==NaN||number_of_monsters==0||color_fifteen_point_ball==null||
+    color_five_point_ball==null||color_twenty_five_point_ball==null){
+        alert("please enter valid details")
     }
     else{
         if(parseInt($("#NumOfBalls").val())>90||parseInt($("#NumOfBalls").val())<50||parseInt($("#GameTime").val())<60){
             alert("please enter valid details")
         }
         else {
-            number_of_balls=numberofballs
+            time_counter=parseFloat(time_counter)
+            number_of_balls=parseInt(numberofballs)
         switchScreens("game_screen")
         }
     }
+}
+
+function get_Color(radio_buttons){
+    for(i=0;i<radio_buttons.length;i++){
+        if (radio_buttons[i].checked==true){
+            return radio_buttons[i].value
+        }}
+    return null;
+
 }
 
 function get_number_of_monsters(Monsters){

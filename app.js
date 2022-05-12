@@ -1,5 +1,9 @@
 var context;
 var shape = new Object();
+var blue_monster_location = new Object()
+var pink_monster_location = new Object()
+var yellow_monster_location = new Object()
+var red_monster_location = new Object()
 var board;
 var score;
 var pac_color;
@@ -8,8 +12,7 @@ var time_elapsed;
 var interval;
 var food_counter;
 var base_image = new Image();
-var currdirection="L"
-
+var currdirection = "L"
 
 $(document).ready(function() {
 	context = canvas.getContext("2d");
@@ -24,7 +27,6 @@ function Start() {
 	var food_counter;
 	var pacman_remain = 1;
 	start_time = new Date();
-	
 	board = [
 		['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'],
 		['X','.','.','.','.','.','.','.','.','.','.','.','.','X','X','.','.','.','.','.','.','.','.','.','.','.','.','X'],
@@ -70,6 +72,16 @@ function Start() {
 	shape.j = getRndInteger(11,16);
 	console.log("i:"+shape.i)
 	console.log("j:"+shape.j)
+
+	blue_monster_location.i = 1
+	blue_monster_location.j = 1
+	pink_monster_location.i = board.length - 2
+	pink_monster_location.j = 1
+	yellow_monster_location.i = 1
+	yellow_monster_location.j = board[0].length - 2
+	red_monster_location.i = board.length - 2
+	red_monster_location.j = board[0].length - 2
+
 	pacman_remain--;
 	keysDown = {};
 	addEventListener(
@@ -122,8 +134,16 @@ function Draw() {
 	canvas.width = canvas.width; //clean board
 	lblScore.value = score;
 	lblTime.value = time_elapsed;
-	pac_img = new Image()
+	let pac_img = new Image()
 	pac_img.src = 'media/pacman_icon_L.png'
+	let blue_monster_img = new Image()
+	blue_monster_img.src = "media/blue_monster.png"
+	let pink_monster_img = new Image()
+	pink_monster_img.src = "media/pink_monster.jpg"
+	let yellow_monster_img = new Image()
+	yellow_monster_img.src = "media/yellow_monster.png"
+	let red_monster_img = new Image()
+	red_monster_img.src = "media/red_monster.jpg"
 	let is_painted=false
 	let last_hope=[0,0]
 
@@ -132,12 +152,30 @@ function Draw() {
 			var center = new Object();
 			center.x = i * 30 + 5;
 			center.y = j * 30 + 5;
-		 	if (board[i][j] == '.') {
+			if(i === 1 && j === 1){
+				board[i][j] = "_"
+				context.drawImage(blue_monster_img, blue_monster_location.i * 30 - 5, blue_monster_location.j * 30 - 5, 20, 20);
+			}
+			if(i === 1 && j === board[i].length - 2){
+				board[i][j] = "_"
+				context.drawImage(pink_monster_img, pink_monster_location.i * 30 - 5, pink_monster_location.j * 30 - 5, 20, 20);
+
+			}
+			if(i === board.length - 2 && j === 1){
+				board[i][j] = "_"
+				context.drawImage(red_monster_img, yellow_monster_location.i * 30 - 5, yellow_monster_location.j * 30 - 5, 20, 20);
+			}
+			if(i === board.length - 2 && j === board[i].length - 2){
+				board[i][j] = "_"
+				context.drawImage(yellow_monster_img, red_monster_location.i * 30 - 5, red_monster_location.j * 30 - 5, 20, 20);
+			}
+
+			if (board[i][j] === '.') {
 				context.beginPath();
 				context.arc(center.x, center.y, 5, 0, 2 * Math.PI); // circle
 				context.fillStyle = "white"; //color
 				context.fill();
-			} else if (board[i][j] == 'X') {
+			} else if (board[i][j] === 'X') {
 				context.beginPath();
 				context.rect(center.x - 20, center.y - 20, 40, 40);
 				context.lineWidth = "50";
@@ -145,39 +183,31 @@ function Draw() {
 				context.fillStyle = "blue"; //color
 				context.fill();
 			}
-			 else if(board[i][j] == '1' ||board[i][j] == '_' ){
+			 else if(board[i][j] === '1' || board[i][j] === '_' ){
 				 if(i === shape.i && j === shape.j){
 				// x=Math.random()
 				// if (x>0.2) {
-				if(currdirection=="R") {
+				if(currdirection === "R") {
 					base_image.src = 'media/pacman_icon_R.png';
 					context.drawImage(base_image, shape.i * 30 - 5, shape.j * 30 - 5, 20, 20);
 				}
-				else if (currdirection=="L"){
+				else if (currdirection === "L"){
 					base_image.src = 'media/pacman_icon_L.png';
 					context.drawImage(base_image, shape.i * 30 - 5, shape.j * 30 - 5, 20, 20);
 				}
-				else if (currdirection=="D"){
+				else if (currdirection === "D"){
 					base_image.src = 'media/pacman_icon_D.png';
 					context.drawImage(base_image, shape.i * 30 - 5, shape.j * 30 - 5, 20, 20);
 				}
-				else if (currdirection=="U"){
+				else if (currdirection === "U"){
 					base_image.src = 'media/pacman_icon_U.png';
 					context.drawImage(base_image, shape.i * 30 - 5, shape.j * 30 - 5, 20, 20);
 				}
-
-
-
 				}
 			 }
-
 		}
 	}
-
-
 }
-
-
 
 
 function UpdatePosition() {
@@ -229,4 +259,3 @@ function UpdatePosition() {
 		Draw();
 	}
 }
-

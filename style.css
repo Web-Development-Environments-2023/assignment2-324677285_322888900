@@ -42,7 +42,8 @@ body
     margin: 0;  
     padding: 0;  
     background-color:#6abadeba;  
-    font-family: 'Arial';  
+    font-family: 'Arial';
+   /* overflow: hidden;without it it wont scroll */
 }  
 
 
@@ -66,7 +67,8 @@ padding: 20px;
 
 .screen > div > form > label {  
 color: #08ffd1;  
-font-size: 17px;  
+font-size: 17px;
+
 }
 
 span.screen{  
@@ -94,6 +96,20 @@ span.screen{
 .input_button:hover{
     background-color: antiquewhite;
 }
+
+/*------------------------------------------settings screen----------------*/
+
+.settings{
+    width:1000px;
+    overflow: hidden;
+    margin: auto;
+    margin: 20 0 0 450px;
+    padding: 80px;
+    background: #2c7264;
+    border-radius: 15px ;
+
+}
+
 
 
 /* ---------------------------game screen-------------------------------- */

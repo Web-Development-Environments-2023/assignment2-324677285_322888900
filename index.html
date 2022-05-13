@@ -46,11 +46,11 @@
 						signIn
 					</button>
 				</li>
-				<li>
-					<button onclick="switchScreens('settings')">
-						Settings
-					</button>
-				</li>
+<!--				<li>-->
+<!--					<button onclick="switchScreens('settings')">-->
+<!--						Settings-->
+<!--					</button>-->
+<!--				</li>-->
 			</ul>
 			
 		</div>
@@ -131,26 +131,95 @@
 			</div>
 			<div class="screen" id="settings" style="display:none">
 				<h2>Settings</h2>
-				<div>
+				<div class="settings">
 				<form>
-
 					<label>
-						<input type="radio" name="choose_key" value="updown">
+						<input type="radio" name="choose_key" class="keys_picker" value="updown">
 						<img src="media/updown.jpg" height="300px" width="300px">
 					</label>
 
 					<label>
-						<input type="radio" name="choose_key" value="wrap">
+						<input type="radio" name="choose_key" class="keys_picker" value="wrap">
 						<img src="media/wrap.jpg" height="300px" width="300px">
 					</label>
-
 				</form>
+					<label><b>Please enter number of balls (Number between 50-90)</b></label>
+					<input type="text" name="NumOfBalls" class="input_box" id="NumOfBalls">
+					<br>
+					<label><b>Please enter game time in seconds (Minimum 60)</b></label>
+					<input type="text" name="Game Time" class="input_box" id="GameTime">
+					<br>
 
-<!--					<div class="slidecontainer" >-->
-<!--						<input type="range" min="1" max="100" value="50" class="slider" id="myRange">-->
-<!--						<p>Value: <span id="demo"></span></p>-->
-<!--					</div>-->
+					<label><b>Please choose balls colors</b></label>
 
+					<br>
+					<label><b>5 Points balls</b></label>
+					<form>
+						<label>
+							<input text="blue" type="radio" name="choose_5" class="choose_5" value="blue">
+							Blue
+						</label>
+
+						<label>
+							<input text="purple" type="radio" name="choose_5" class="choose_5" value="purple">
+							Purple
+						</label>
+					</form>
+					<label><b>10 Points balls</b></label>
+					<form>
+						<label>
+							<input text="red" type="radio" name="choose_15" class="choose_15" value="red">
+							Red
+						</label>
+
+						<label>
+							<input text="orange" type="radio" name="choose_15" class="choose_15" value="orange">
+							Orange
+						</label>
+					</form>
+					<label><b>25 Points balls</b></label>
+					<form>
+						<label>
+							<input text="white" type="radio" name="choose_25" class="choose_25" value="white">
+							White
+						</label>
+
+						<label>
+							<input text="green" type="radio" name="choose_25" class="choose_25" value="green">
+							Green
+						</label>
+					</form>
+
+
+
+
+
+					<label><b>Number Of Monsters</b></label>
+
+					<form>
+						<label>
+							<input type="radio" class="monster_picker" name="choose_key" value="four_monsters">
+							<img src="https://res.cloudinary.com/practicaldev/image/fetch/s--2Uo1Z-4Q--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://cdn-images-1.medium.com/proxy/0%2A1GwJvRgVTwygmEfl.jpg" height="100px" width="100px">
+						</label>
+
+						<label>
+							<input type="radio" class="monster_picker" name="choose_key" value="three_monsters">
+							<img src="data:image/jpeg;base64,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" height="100px" width="100px">
+						</label>
+
+						<label>
+							<input type="radio" class="monster_picker" name="choose_key" value="two_monsters">
+							<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8LRi7GiY7u8292X7co8zSOxEyjiZAuI22zg&usqp=CAU" height="100px" width="100px">
+						</label>
+
+						<label>
+							<input type="radio" class="monster_picker" name="choose_key" value="one_monsters">
+							<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTqdP9zTK-k6IBwi59rj9y8EwSM2aZAC2GvA&usqp=CAU" height="100px" width="100px">
+						</label>
+					</form>
+					<button id="Random_Settings" onclick="Random_Settings_Generator()">Enter Random Values</button>
+					<button id="start_Game" onclick="start_Game()">Start Game</button>
+				</div>
 				</div>
 
 
@@ -170,11 +239,12 @@
 				<h2 style="color: blue;">
 					Game Started
 				</h2>
+				<canvas id="canvas" tabindex="0" height="800" width="900" style="border:1px solid blue;"></canvas>
 				<label for="lblScore" style="color: blue;">SCORE:</label>
 				<input id="lblScore" type="text" />
 				<label for="lblTime" style="color: blue;">TIME:</label>
 				<input id="lblTime" type="text" />
-				<canvas id="canvas" height="800" width="900" style="border:1px solid blue;"></canvas>
+
 			</div>
 		
 		

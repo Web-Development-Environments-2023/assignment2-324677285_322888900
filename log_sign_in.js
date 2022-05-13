@@ -7,7 +7,10 @@ function log_into_system(){
     let password =  $("#password_login_box").val()
     let result = localStorage.getItem(user_name)
     if (result == password){
-        switchScreens('game_screen')
+        switchScreens('settings')
+    }
+    else{
+        alert("Wrong username or password")
     }
 }
 

@@ -4,6 +4,7 @@
 
 		<script src="./jquery-3.4.1.slim.min.js"></script>
 		<script type="text/javascript" src="./app.js"></script>
+		<script type="text/javascript" src="./monsters.js"></script>
 		<script type="text/javascript" src="./settings.js"></script>
 		<script type="text/javascript" src="./menu.js"></script>
 		<script type="text/javascript" src="./log_sign_in.js"></script>
@@ -189,11 +190,6 @@
 							Green
 						</label>
 					</form>
-
-
-
-
-
 					<label><b>Number Of Monsters</b></label>
 
 					<form>
@@ -235,15 +231,20 @@
 				<br>
 				<button onclick="closeAboutModal()">Close dialog</button>
 				</dialog>
+
 			<div class="screen" id="game_screen" style="display:none">
 				<h2 style="color: blue;">
 					Game Started
 				</h2>
 				<canvas id="canvas" tabindex="0" height="800" width="900" style="border:1px solid blue;"></canvas>
+
 				<label for="lblScore" style="color: blue;">SCORE:</label>
 				<input id="lblScore" type="text" />
 				<label for="lblTime" style="color: blue;">TIME:</label>
 				<input id="lblTime" type="text" />
+				<label for="lblFails" style="color: blue;">Fails:</label>
+				<input id="lblFails" type="text"/>
+
 
 			</div>
 		

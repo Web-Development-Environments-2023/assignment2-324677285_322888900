@@ -56,7 +56,8 @@ function start_Game(){
         else {
             time_counter=parseFloat(time_counter)
             number_of_balls=parseInt(numberofballs)
-        switchScreens("game_screen")
+            Start()
+            switchScreens("game_screen")
         }
     }
 }

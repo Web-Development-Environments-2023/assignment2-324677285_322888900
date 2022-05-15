@@ -144,18 +144,15 @@ function Draw() {
 	lblFails.value=fails
 	let pac_img = new Image()
 	pac_img.src = 'media/pacman_icon_L.png'
-	curr_time=time_elapsed
 
-	let is_painted=false
-	let last_hope=[0,0]
 
 	for (var i = 0; i < board.length; i++) {
 		for (var j = 0; j < board[i].length; j++) {
 			var center = new Object();
 			center.x = i * 30 + 5;
 			center.y = j * 30 + 5;
-			if(time_elapsed+5>curr_time){
-				curr_time+=5
+			let rnd=getRndInteger(0,10000)
+			if(rnd<15){
 				drawMonsters(true)
 			}
 			else{

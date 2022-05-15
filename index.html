@@ -47,11 +47,6 @@
 						signIn
 					</button>
 				</li>
-<!--				<li>-->
-<!--					<button onclick="switchScreens('settings')">-->
-<!--						Settings-->
-<!--					</button>-->
-<!--				</li>-->
 			</ul>
 			
 		</div>
@@ -138,7 +133,6 @@
 						<input type="radio" name="choose_key" class="keys_picker" value="updown">
 						<img src="media/updown.jpg" height="300px" width="300px">
 					</label>
-
 					<label>
 						<input type="radio" name="choose_key" class="keys_picker" value="wrap">
 						<img src="media/wrap.jpg" height="300px" width="300px">
@@ -150,9 +144,7 @@
 					<label><b>Please enter game time in seconds (Minimum 60)</b></label>
 					<input type="text" name="Game Time" class="input_box" id="GameTime">
 					<br>
-
 					<label><b>Please choose balls colors</b></label>
-
 					<br>
 					<label><b>5 Points balls</b></label>
 					<form>
@@ -217,11 +209,6 @@
 					<button id="start_Game" onclick="start_Game()">Start Game</button>
 				</div>
 				</div>
-
-
-
-
-
 			</div>
 			<dialog id="about_dialog">
 				<h3 style="text-align: center;">About us:</h3>
@@ -236,16 +223,14 @@
 				<h2 style="color: blue;">
 					Game Started
 				</h2>
-				<canvas id="canvas" tabindex="0" height="800" width="900" style="border:1px solid blue;"></canvas>
-
 				<label for="lblScore" style="color: blue;">SCORE:</label>
-				<input id="lblScore" type="text" />
+				<input class = "input_box" id="lblScore" type="text" />
 				<label for="lblTime" style="color: blue;">TIME:</label>
-				<input id="lblTime" type="text" />
+				<input class = "input_box" id="lblTime" type="text" />
 				<label for="lblFails" style="color: blue;">Fails:</label>
-				<input id="lblFails" type="text"/>
-
-
+				<input class = "input_box" id="lblFails" type="text"/>
+				<br>
+				<canvas id="canvas" tabindex="0" height="800" width="900" style="border:1px solid blue;"></canvas>
 			</div>
 		
 		

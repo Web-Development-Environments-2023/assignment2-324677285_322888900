@@ -52,7 +52,7 @@ body
     width: 385px;  
     overflow: hidden;  
     margin: auto;  
-    margin: 20 0 0 450px;  
+    /*margin: 20 0 0 450px;  */
     padding: 80px;  
     background: #23463f;  
     border-radius: 15px ;  
@@ -60,15 +60,14 @@ body
 }  
 
 h2.screen{  
-text-align: center;  
-color: #277582;  
-padding: 20px;  
+    text-align: center;
+    color: #277582;
+    padding: 20px;
 }  
 
 .screen > div > form > label {  
-color: #08ffd1;  
-font-size: 17px;
-
+    color: #08ffd1;
+    font-size: 17px;
 }
 
 span.screen{  
@@ -78,7 +77,7 @@ span.screen{
 
 .input_box{
     width: 300px;  
-    height: 30px;  
+    height: 20px;
     border: none;  
     border-radius: 3px;  
     padding-left: 8px;  
@@ -103,14 +102,11 @@ span.screen{
     width:1000px;
     overflow: hidden;
     margin: auto;
-    margin: 20 0 0 450px;
+    /*margin: 20 0 0 450px;*/
     padding: 80px;
     background: #2c7264;
     border-radius: 15px ;
-
 }
-
-
 
 /* ---------------------------game screen-------------------------------- */
 
@@ -119,7 +115,6 @@ span.screen{
   height: auto;
   width: auto;
 }
-
 
 /* ---------------------------modal screen--------------------- */
 

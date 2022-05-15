@@ -1,9 +1,9 @@
 var context;
 var shape = new Object();
-var blue_monster_location = new Object()
-var pink_monster_location = new Object()
-var yellow_monster_location = new Object()
-var red_monster_location = new Object()
+var blue_monster_location = new Object();
+var pink_monster_location = new Object();
+var yellow_monster_location = new Object();
+var red_monster_location = new Object();
 var board;
 var score;
 var pac_color;
@@ -12,24 +12,21 @@ var time_elapsed;
 var interval;
 var food_counter;
 var base_image = new Image();
-var currdirection = "L"
-var fails
-
-
-
-
-
+var currDirection = "L"
+var fails;
+var pac_img = new Image();
+pac_img.src = 'media/pacman_icon_L.png';
+var currentTime = new Date();
 
 
 function Start() {
-
 	context = canvas.getContext("2d");
 	board = new Array();
 	score = 0;
-	fails=0
+	fails = 3;
 	pac_color = "yellow";
 	var cnt = 100;
-	var food_counter;
+	food_counter = 0;
 	var pacman_remain = 1;
 	start_time = new Date();
 	board = [
@@ -67,7 +64,7 @@ function Start() {
 		]
 	for (var i = 0; i < board.length; i++) {
 		for(var j = 0; j < board[i].length ; j++){
-			if(board[i][j] == '.'){
+			if(board[i][j] === '.'){
 				food_counter++;
 			}
 		}
@@ -111,7 +108,7 @@ function Start() {
 function findRandomEmptyCell(board) {
 	var i = Math.floor(Math.random() * 9 + 1);
 	var j = Math.floor(Math.random() * 9 + 1);
-	while (board[i][j] != 0) {
+	while (board[i][j] !== 0) {
 		i = Math.floor(Math.random() * 9 + 1);
 		j = Math.floor(Math.random() * 9 + 1);
 	}
@@ -139,30 +136,26 @@ function GetKeyPressed() {
 
 function Draw() {
 	canvas.width = canvas.width; //clean board
-	lblScore.value = score;
-	lblTime.value = time_elapsed;
-	lblFails.value=fails
-	let pac_img = new Image()
-	pac_img.src = 'media/pacman_icon_L.png'
-
-
 	for (var i = 0; i < board.length; i++) {
 		for (var j = 0; j < board[i].length; j++) {
 			var center = new Object();
 			center.x = i * 30 + 5;
 			center.y = j * 30 + 5;
-			let rnd=getRndInteger(0,10000)
+			let rnd = getRndInteger(0,10000)
 			if(rnd<15){
 				drawMonsters(true)
 			}
 			else{
 				drawMonsters(false)
 			}
+			//TODO - add random generator for good spread of balls.
+			// According to the number of balls chosen by the user.
 			if (board[i][j] === '.') {
 				context.beginPath();
 				context.arc(center.x, center.y, 5, 0, 2 * Math.PI); // circle
 				context.fillStyle = "white"; //color
 				context.fill();
+				food_counter++;
 			} else if (board[i][j] === 'X') {
 				context.beginPath();
 				context.rect(center.x - 20, center.y - 20, 40, 40);
@@ -176,19 +169,19 @@ function Draw() {
 				 if(i === shape.i && j === shape.j){
 				// x=Math.random()
 				// if (x>0.2) {
-				if(currdirection === "R") {
+				if(currDirection === "R") {
 					base_image.src = 'media/pacman_icon_R.png';
 					context.drawImage(base_image, shape.i * 30 - 5, shape.j * 30 - 5, 20, 20);
 				}
-				else if (currdirection === "L"){
+				else if (currDirection === "L"){
 					base_image.src = 'media/pacman_icon_L.png';
 					context.drawImage(base_image, shape.i * 30 - 5, shape.j * 30 - 5, 20, 20);
 				}
-				else if (currdirection === "D"){
+				else if (currDirection === "D"){
 					base_image.src = 'media/pacman_icon_D.png';
 					context.drawImage(base_image, shape.i * 30 - 5, shape.j * 30 - 5, 20, 20);
 				}
-				else if (currdirection === "U"){
+				else if (currDirection === "U"){
 					base_image.src = 'media/pacman_icon_U.png';
 					context.drawImage(base_image, shape.i * 30 - 5, shape.j * 30 - 5, 20, 20);
 				}
@@ -200,8 +193,26 @@ function Draw() {
 }
 
 
-function UpdatePosition() {
+function catched_by_monster() {
 
+	if(shape.i === pink_monster_location.i && shape.j === pink_monster_location.j){
+		return true
+	}
+	if(shape.i === blue_monster_location.i && shape.j === blue_monster_location.j){
+		return true
+	}
+	if(shape.i === red_monster_location.i && shape.j === red_monster_location.j){
+		return true
+	}
+	if(shape.i === yellow_monster_location.i && shape.j === yellow_monster_location.j){
+		return true
+	}
+}
+
+function UpdatePosition() {
+	lblScore.value = score;
+	lblTime.value = time_elapsed;
+	lblFails.value = fails
 	board[shape.i][shape.j] = '_';
 	context.drawImage(base_image, shape.i , shape.j , 40, 40);
 	var x = GetKeyPressed();
@@ -209,56 +220,78 @@ function UpdatePosition() {
 		if (shape.j > 0 && board[shape.i][shape.j - 1] != 'X') {
 			shape.j--;
 			board[shape.i][shape.j] = '1';
-			currdirection="U"
+			currDirection="U"
 		}
 	}
-	if (x == 2) {
-		if (shape.j < board[0].length && board[shape.i][shape.j + 1] != 'X') {
+	if (x === 2) {
+		if (shape.j < board[0].length && board[shape.i][shape.j + 1] !== 'X') {
 			shape.j++;
 			board[shape.i][shape.j] = '1';
-			currdirection="D"
+			currDirection="D"
 		}
 	}
-	if (x == 3) {
-		if (shape.i > 0 && board[shape.i - 1][shape.j] != 'X') {
+	if (x === 3) {
+		if (shape.i > 0 && board[shape.i - 1][shape.j] !== 'X') {
 			shape.i--;
 			board[shape.i][shape.j] = '1';
-			currdirection="L"
+			currDirection="L"
 		}
 	}
-	if (x == 4) {
-		if (shape.i < board.length && board[shape.i + 1][shape.j] != 'X') {
+	if (x === 4) {
+		if (shape.i < board.length && board[shape.i + 1][shape.j] !== 'X') {
 			shape.i++;
 			board[shape.i][shape.j] = '1';
-			currdirection="R"
+			currDirection="R"
 
 		}
 	}
-	if (board[shape.i][shape.j] == '.') {
+	//TODO - check why the score is not updated in thr screen.
+	if (board[shape.i][shape.j] === '.') {
 		score++;
+		lblScore.value = score
+		board[shape.i][shape.j] = '_';
 	}
-	board[shape.i][shape.j] = '_';
-	var currentTime = new Date();
+
+	//TODO - check why timer is not shown properly
 	time_elapsed = (currentTime - start_time) / 1000;
-	if (score >= 20 && time_elapsed <= 10) {
-		pac_color = "green";
-	}
-	if(time_counter>=time_elapsed){
-		if(score<100){
-		window.clearInterval(interval);
-		window.alert("You are better then "+score+" points!");
-		fails++
+	// if (score >= 20 && time_elapsed <= 10) {
+	// 	pac_color = "green";
+	// }
+	// if(time_counter>=time_elapsed){
+	// 	if(score<100){
+	// 	window.clearInterval(interval);
+	// 	window.alert("You are better then " + score + " points!");
+	// 	fails++
+	// 	}
+	// 	else{
+	// 		window.clearInterval(interval);
+	// 		window.alert("Winner!");
+	//
+	// 	}
+	// }
+	// if (score === food_counter) {
+	// 	window.clearInterval(interval);
+	// 	window.alert("Game completed");
+	// }
+
+	//TODO - check why game is keep going when the fails are 0.
+	if(catched_by_monster()){
+		if(fails === 0 ){
+			window.alert("Game Over!")
+			window.clearInterval(interval);
+			Start()
+			switchScreens("settings")
 		}
 		else{
-			window.clearInterval(interval);
-			window.alert("Winner!");
+			fails--;
+			lblFails.value = fails
+			shape.i = getRndInteger(13,15);//random number between
+			shape.j = getRndInteger(11,16);
+			UpdatePosition()
 
 		}
 	}
-	if (score == food_counter) {
-		window.clearInterval(interval);
-		window.alert("Game completed");
-	} else {
+	else {
 		Draw();
 	}
 

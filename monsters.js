@@ -18,6 +18,7 @@ function drawMonsters(shold_move){
             pink_monster_location= moveMonster(pink_monster_location)
         context.drawImage(pink_monster_img, pink_monster_location.i * 30 - 5, pink_monster_location.j * 30 - 5, 20, 20);
     }
+
     if(number_of_monsters>2){
         if(shold_move)
             red_monster_location= moveMonster(red_monster_location)

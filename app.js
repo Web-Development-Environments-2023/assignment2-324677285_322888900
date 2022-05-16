@@ -17,7 +17,8 @@ var fails;
 var pac_img = new Image();
 pac_img.src = 'media/pacman_icon_L.png';
 var currentTime = new Date();
-
+var rnd_i
+var rnd_j
 
 function Start() {
 	context = canvas.getContext("2d");
@@ -62,6 +63,8 @@ function Start() {
 		['X','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','X'],
 		['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'],
 		]
+	   rnd_i=getRndInteger(1,5)
+	   rnd_j=getRndInteger(1,5)
 	for (var i = 0; i < board.length; i++) {
 		for(var j = 0; j < board[i].length ; j++){
 			if(board[i][j] === '.'){
@@ -135,6 +138,9 @@ function GetKeyPressed() {
 }
 
 function Draw() {
+	let n5=number_of_fives
+	let n15=number_of_fifteens
+	let n25=number_of_twenty_fives
 	canvas.width = canvas.width; //clean board
 	for (var i = 0; i < board.length; i++) {
 		for (var j = 0; j < board[i].length; j++) {
@@ -151,11 +157,13 @@ function Draw() {
 			//TODO - add random generator for good spread of balls.
 			// According to the number of balls chosen by the user.
 			if (board[i][j] === '.') {
-				context.beginPath();
-				context.arc(center.x, center.y, 5, 0, 2 * Math.PI); // circle
-				context.fillStyle = "white"; //color
-				context.fill();
-				food_counter++;
+				let which_ball=PaintBalls(i,j,center,n5,n15,n25)
+				if(which_ball==5)
+					n5--
+				else if(which_ball==15)
+					n15--
+				else if(which_ball==25)
+					n25--
 			} else if (board[i][j] === 'X') {
 				context.beginPath();
 				context.rect(center.x - 20, center.y - 20, 40, 40);

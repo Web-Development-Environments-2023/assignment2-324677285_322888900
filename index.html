@@ -145,44 +145,85 @@
 					<label><b>Please enter game time in seconds (Minimum 60)</b></label>
 					<input type="text" name="Game Time" class="input_box" id="GameTime">
 					<br>
-					<label><b>Please choose balls colors</b></label>
 					<br>
-					<label><b>5 Points balls</b></label>
-					<form>
-						<label>
-							<input text="blue" type="radio" name="choose_5" class="choose_5" value="blue">
-							Blue
-						</label>
+					<label><b>5 Points balls color:</b></label>
+					<select name="5 Points balls" id="5_ball_color">
+						<option value="green">Green</option>
+						<option value="yellow">Yellow</option>
+						<option value="white">White</option>
+						<option value="deeppink">Pink</option>
+						<option value="blue">Blue</option>
+						<option value="orange">Orange</option>
+						<option value="purple">Purple</option>
+						<option value="red">Red</option>
+						<option value="aqua">Aqua</option>
+					</select>
+					<br>
+					<br>
+<!--					<label><b>5 Points balls</b></label>-->
+<!--					<form>-->
+<!--						<label>-->
+<!--							<input text="blue" type="radio" name="choose_5" class="choose_5" value="blue">-->
+<!--							Blue-->
+<!--						</label>-->
 
-						<label>
-							<input text="purple" type="radio" name="choose_5" class="choose_5" value="purple">
-							Purple
-						</label>
-					</form>
-					<label><b>10 Points balls</b></label>
-					<form>
-						<label>
-							<input text="red" type="radio" name="choose_15" class="choose_15" value="red">
-							Red
-						</label>
+<!--						<label>-->
+<!--							<input text="purple" type="radio" name="choose_5" class="choose_5" value="purple">-->
+<!--							Purple-->
+<!--						</label>-->
+<!--					</form>-->
+<!--					<label><b>10 Points balls</b></label>-->
+					<label><b>15 Points balls color:</b></label>
+					<select name="15 Points balls" id="15_ball_color">
+						<option value="green">Green</option>
+						<option value="yellow">Yellow</option>
+						<option value="white">White</option>
+						<option value="deeppink">Pink</option>
+						<option value="blue">Blue</option>
+						<option value="orange">Orange</option>
+						<option value="purple">Purple</option>
+						<option value="red">Red</option>
+						<option value="aqua">Aqua</option>
+					</select>
+					<br>
+					<br>
+<!--					<form>-->
+<!--						<label>-->
+<!--							<input text="red" type="radio" name="choose_15" class="choose_15" value="red">-->
+<!--							Red-->
+<!--						</label>-->
 
-						<label>
-							<input text="orange" type="radio" name="choose_15" class="choose_15" value="orange">
-							Orange
-						</label>
-					</form>
-					<label><b>25 Points balls</b></label>
-					<form>
-						<label>
-							<input text="white" type="radio" name="choose_25" class="choose_25" value="white">
-							White
-						</label>
+<!--						<label>-->
+<!--							<input text="orange" type="radio" name="choose_15" class="choose_15" value="orange">-->
+<!--							Orange-->
+<!--						</label>-->
+<!--					</form>-->
+<!--					<label><b>25 Points balls</b></label>-->
+					<label><b>25 Points balls color:</b></label>
+					<select name="25 Points balls" id="25_ball_color">
+						<option value="green">Green</option>
+						<option value="yellow">Yellow</option>
+						<option value="white">White</option>
+						<option value="deeppink">Pink</option>
+						<option value="blue">Blue</option>
+						<option value="orange">Orange</option>
+						<option value="purple">Purple</option>
+						<option value="red">Red</option>
+						<option value="aqua">Aqua</option>
+					</select>
+<!--					<form>-->
+<!--						<label>-->
+<!--							<input text="white" type="radio" name="choose_25" class="choose_25" value="white">-->
+<!--							White-->
+<!--						</label>-->
 
-						<label>
-							<input text="green" type="radio" name="choose_25" class="choose_25" value="green">
-							Green
-						</label>
-					</form>
+<!--						<label>-->
+<!--							<input text="green" type="radio" name="choose_25" class="choose_25" value="green">-->
+<!--							Green-->
+<!--						</label>-->
+<!--					</form>-->
+					<br>
+					<br>
 					<label><b>Number Of Monsters</b></label>
 
 					<form>
@@ -206,8 +247,8 @@
 							<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTqdP9zTK-k6IBwi59rj9y8EwSM2aZAC2GvA&usqp=CAU" height="100px" width="100px">
 						</label>
 					</form>
-					<button id="Random_Settings" onclick="Random_Settings_Generator()">Enter Random Values</button>
-					<button id="start_Game" onclick="start_Game()">Start Game</button>
+					<button id="Random_Settings" onclick="randomSettingsGenerator()">Enter Random Values</button>
+					<button id="start_Game" onclick="startGame()">Start Game</button>
 				</div>
 				</div>
 			</div>

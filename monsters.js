@@ -6,6 +6,10 @@ blue_monster_img.src = "media/blue_monster.png"
 pink_monster_img.src = "media/pink_monster.jpg"
 yellow_monster_img.src = "media/yellow_monster.png"
 red_monster_img.src = "media/red_monster.jpg"
+var blue_monster_location = new Object();
+var pink_monster_location = new Object();
+var yellow_monster_location = new Object();
+var red_monster_location = new Object();
 //TODO - add special monster
 
 function drawMonsters(shold_move){
@@ -85,4 +89,17 @@ function moveRandom(location){
             return location
     }
     return location
+}
+
+
+function setUpMonsters(){
+    blue_monster_location.i = 1
+    blue_monster_location.j = 1
+    pink_monster_location.i = board.length - 2
+    pink_monster_location.j = 1
+    yellow_monster_location.i = 1
+    yellow_monster_location.j = board[0].length - 2
+    red_monster_location.i = board.length - 2
+    red_monster_location.j = board[0].length - 2
+
 }

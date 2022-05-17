@@ -1,9 +1,5 @@
 var context;
 var shape = new Object();
-var blue_monster_location = new Object();
-var pink_monster_location = new Object();
-var yellow_monster_location = new Object();
-var red_monster_location = new Object();
 var board;
 var score;
 var pac_color;
@@ -16,20 +12,23 @@ var currDirection = "L"
 var fails;
 var pac_img = new Image();
 pac_img.src = 'media/pacman_icon_L.png';
-var currentTime = new Date();
+var currentTime;
 var rnd_i
 var rnd_j
+var drawn_balls = false
+
 
 function Start() {
 	context = canvas.getContext("2d");
 	board = new Array();
 	score = 0;
-	fails = 3;
+	fails = 5;
 	pac_color = "yellow";
 	var cnt = 100;
 	food_counter = 0;
 	var pacman_remain = 1;
 	start_time = new Date();
+	time_elapsed = 0;
 	board = [
 		['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'],
 		['X','.','.','.','.','.','.','.','.','.','.','.','.','X','X','.','.','.','.','.','.','.','.','.','.','.','.','X'],
@@ -45,7 +44,7 @@ function Start() {
 		['X','X','X','X','X','X','.','X','X','.','.','.','.','.','.','.','.','.','.','X','X','.','X','X','X','X','X','X'],
 		['X','X','X','X','X','X','.','X','X','.','X','X','X','.','.','X','X','X','.','X','X','.','X','X','X','X','X','X'],
 		['X','X','X','X','X','X','.','X','X','.','X','.','.','.','.','.','.','X','.','X','X','.','X','X','X','X','X','X'],
-		['X','.','.','.','.','.','.','.','.','.','X','.','.','1','.','.','.','X','.','.','.','.','.','.','.','.','.','X'],
+		['X','.','.','.','.','.','.','.','.','.','X','.','.','.','.','.','.','X','.','.','.','.','.','.','.','.','.','X'],
 		['X','X','X','X','X','X','.','X','X','.','X','.','.','.','.','.','.','X','.','X','X','.','X','X','X','X','X','X'],
 		['X','X','X','X','X','X','.','X','X','.','X','X','X','X','X','X','X','X','.','X','X','.','X','X','X','X','X','X'],
 		['X','X','X','X','X','X','.','X','X','.','.','.','.','.','.','.','.','.','.','X','X','.','X','X','X','X','X','X'],
@@ -79,22 +78,14 @@ function Start() {
 	shape.j = getRndInteger(11,16);
 	console.log("i:"+shape.i)
 	console.log("j:"+shape.j)
-
-	blue_monster_location.i = 1
-	blue_monster_location.j = 1
-	pink_monster_location.i = board.length - 2
-	pink_monster_location.j = 1
-	yellow_monster_location.i = 1
-	yellow_monster_location.j = board[0].length - 2
-	red_monster_location.i = board.length - 2
-	red_monster_location.j = board[0].length - 2
-
+	setUpMonsters()
 	pacman_remain--;
 	keysDown = {};
 	addEventListener(
 		"keydown",
 		function(e) {
 			keysDown[e.keyCode] = true;
+			e.preventDefault();
 		},
 		false
 	);
@@ -102,6 +93,7 @@ function Start() {
 		"keyup",
 		function(e) {
 			keysDown[e.keyCode] = false;
+			e.preventDefault();
 		},
 		false
 	);
@@ -138,13 +130,10 @@ function GetKeyPressed() {
 }
 
 function Draw() {
-	let n5=number_of_fives
-	let n15=number_of_fifteens
-	let n25=number_of_twenty_fives
 	canvas.width = canvas.width; //clean board
-	for (var i = 0; i < board.length; i++) {
-		for (var j = 0; j < board[i].length; j++) {
-			var center = new Object();
+	for (let i = 0; i < board.length; i++) {
+		for (let j = 0; j < board[i].length; j++) {
+			let center = new Object();
 			center.x = i * 30 + 5;
 			center.y = j * 30 + 5;
 			let rnd = getRndInteger(0,10000)
@@ -157,14 +146,27 @@ function Draw() {
 			//TODO - add random generator for good spread of balls.
 			// According to the number of balls chosen by the user.
 			if (board[i][j] === '.') {
-				let which_ball=PaintBalls(i,j,center,n5,n15,n25)
-				if(which_ball==5)
-					n5--
-				else if(which_ball==15)
-					n15--
-				else if(which_ball==25)
-					n25--
-			} else if (board[i][j] === 'X') {
+				if(drawn_balls == false){
+					let which_ball = paintFood(i, j, center, number_of_fives, number_of_fifteens, number_of_twenty_fives)
+					if(which_ball === 5)
+						number_of_fives--;
+					else if(which_ball === 15)
+						number_of_fifteens--;
+					else if(which_ball === 25)
+						number_of_twenty_fives--;
+				}
+			}
+			else if(board[i][j] === '5'){
+				drawFivePointBall(center, color_five_point_ball);
+			}
+			else if(board[i][j] === '15'){
+				drawFifteenPointBall(center, color_fifteen_point_ball);
+			}
+			else if(board[i][j] === '25'){
+				drawTwentyFivePointBall(center, color_twenty_five_point_ball);
+			}
+
+			else if (board[i][j] === 'X') {
 				context.beginPath();
 				context.rect(center.x - 20, center.y - 20, 40, 40);
 				context.lineWidth = "50";
@@ -173,35 +175,46 @@ function Draw() {
 				context.fill();
 			}
 
-			 else if(board[i][j] === '1' || board[i][j] === '_' ){
+			 else if( board[i][j] === '_' ){
 				 if(i === shape.i && j === shape.j){
-				// x=Math.random()
-				// if (x>0.2) {
-				if(currDirection === "R") {
-					base_image.src = 'media/pacman_icon_R.png';
-					context.drawImage(base_image, shape.i * 30 - 5, shape.j * 30 - 5, 20, 20);
-				}
-				else if (currDirection === "L"){
-					base_image.src = 'media/pacman_icon_L.png';
-					context.drawImage(base_image, shape.i * 30 - 5, shape.j * 30 - 5, 20, 20);
-				}
-				else if (currDirection === "D"){
-					base_image.src = 'media/pacman_icon_D.png';
-					context.drawImage(base_image, shape.i * 30 - 5, shape.j * 30 - 5, 20, 20);
-				}
-				else if (currDirection === "U"){
-					base_image.src = 'media/pacman_icon_U.png';
-					context.drawImage(base_image, shape.i * 30 - 5, shape.j * 30 - 5, 20, 20);
-				}
+					if(currDirection === "R") {
+						base_image.src = 'media/pacman_icon_R.png';
+						context.drawImage(base_image, shape.i * 30 - 5, shape.j * 30 - 5, 20, 20);
+					}
+					else if (currDirection === "L"){
+						base_image.src = 'media/pacman_icon_L.png';
+						context.drawImage(base_image, shape.i * 30 - 5, shape.j * 30 - 5, 20, 20);
+					}
+					else if (currDirection === "D"){
+						base_image.src = 'media/pacman_icon_D.png';
+						context.drawImage(base_image, shape.i * 30 - 5, shape.j * 30 - 5, 20, 20);
+					}
+					else if (currDirection === "U"){
+						base_image.src = 'media/pacman_icon_U.png';
+						context.drawImage(base_image, shape.i * 30 - 5, shape.j * 30 - 5, 20, 20);
+					}
 				}
 			 }
 		}
 	}
+	drawn_balls = true;
 
 }
 
+function checkIfItsFood(x, y){
+	if( board[x][y] === '5') {
+		return 5;
+	}
+	else if(board[x][y] === '25'){
+		return 25;
+	}
+	else if(board[x][y] === '15'){
+		return 15;
+	}
+	else return 1;
+}
 
-function catched_by_monster() {
+function caughtByMonster() {
 
 	if(shape.i === pink_monster_location.i && shape.j === pink_monster_location.j){
 		return true
@@ -217,51 +230,77 @@ function catched_by_monster() {
 	}
 }
 
+
+
 function UpdatePosition() {
-	lblScore.value = score;
-	lblTime.value = time_elapsed;
-	lblFails.value = fails
-	board[shape.i][shape.j] = '_';
+	let food;
+	currentTime = new Date()
+	document.getElementById("lblTime").value = time_elapsed
+	document.getElementById("lblFails").value = fails
+	document.getElementById("lblScore").value = score
+
 	context.drawImage(base_image, shape.i , shape.j , 40, 40);
-	var x = GetKeyPressed();
-	if (x == 1) {
-		if (shape.j > 0 && board[shape.i][shape.j - 1] != 'X') {
+	let keyPressed = GetKeyPressed();
+	if (keyPressed === 1) {
+		if (shape.j > 0 && board[shape.i][shape.j - 1] !== 'X') {
 			shape.j--;
-			board[shape.i][shape.j] = '1';
 			currDirection="U"
+			food = checkIfItsFood(shape.i, shape.j)
+			if(food !== 1){
+				score+= food;
+				console.log("omnomnonmonmnonm")
+				document.getElementById("lblScore").value = score
+
+			}
+			board[shape.i][shape.j] = '_';
 		}
 	}
-	if (x === 2) {
+	if (keyPressed === 2) {
 		if (shape.j < board[0].length && board[shape.i][shape.j + 1] !== 'X') {
 			shape.j++;
-			board[shape.i][shape.j] = '1';
 			currDirection="D"
+			food = checkIfItsFood(shape.i, shape.j)
+			if(food !== 1){
+				score+= food;
+				console.log("omnomnonmonmnonm")
+				document.getElementById("lblScore").value = score
+			}
+			board[shape.i][shape.j] = '_';
 		}
 	}
-	if (x === 3) {
+	if (keyPressed === 3) {
 		if (shape.i > 0 && board[shape.i - 1][shape.j] !== 'X') {
 			shape.i--;
-			board[shape.i][shape.j] = '1';
 			currDirection="L"
+			food = checkIfItsFood(shape.i, shape.j)
+			if(food !== 1){
+				score+= food;
+				console.log("omnomnonmonmnonm")
+				document.getElementById("lblScore").value = score
+			}
+			board[shape.i][shape.j] = '_';
 		}
 	}
-	if (x === 4) {
+	if (keyPressed === 4) {
 		if (shape.i < board.length && board[shape.i + 1][shape.j] !== 'X') {
 			shape.i++;
-			board[shape.i][shape.j] = '1';
 			currDirection="R"
+			food = checkIfItsFood(shape.i, shape.j)
+			if(food !== 1){
+				score+= food;
+				console.log("omnomnonmonmnonm")
+				document.getElementById("lblScore").value = score
+			}
+			board[shape.i][shape.j] = '_';
+
 
 		}
 	}
-	//TODO - check why the score is not updated in thr screen.
-	if (board[shape.i][shape.j] === '.') {
-		score++;
-		lblScore.value = score
-		board[shape.i][shape.j] = '_';
-	}
 
+	board[shape.i][shape.j] = '_';
 	//TODO - check why timer is not shown properly
 	time_elapsed = (currentTime - start_time) / 1000;
+	// time_left =
 	// if (score >= 20 && time_elapsed <= 10) {
 	// 	pac_color = "green";
 	// }
@@ -277,25 +316,28 @@ function UpdatePosition() {
 	//
 	// 	}
 	// }
-	// if (score === food_counter) {
+	// if (score === number_of_balls) {
 	// 	window.clearInterval(interval);
 	// 	window.alert("Game completed");
 	// }
 
 	//TODO - check why game is keep going when the fails are 0.
-	if(catched_by_monster()){
+	if(caughtByMonster()){
 		if(fails === 0 ){
-			window.alert("Game Over!")
+			window.alert("Loser!")
 			window.clearInterval(interval);
 			Start()
 			switchScreens("settings")
 		}
 		else{
 			fails--;
-			lblFails.value = fails
+			score-=10;
+			document.getElementById("lblScore").value = score;
+			document.getElementById("lblFails").value = fails;
 			shape.i = getRndInteger(13,15);//random number between
 			shape.j = getRndInteger(11,16);
-			UpdatePosition()
+			setUpMonsters();
+			UpdatePosition();
 
 		}
 	}

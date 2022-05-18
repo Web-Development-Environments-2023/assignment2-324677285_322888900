@@ -16,9 +16,20 @@ var currentTime;
 var rnd_i
 var rnd_j
 var drawn_balls = false
+var is_pink_available
+var is_red_available
+var is_yellow_available
+var available_board
+var skull_img=new Image()
+var heart_img=new Image()
+var clock_img=new Image()
+
 
 
 function Start() {
+	is_pink_available=false
+	is_yellow_available=false
+	is_red_available=false
 	context = canvas.getContext("2d");
 	board = new Array();
 	score = 0;
@@ -62,18 +73,18 @@ function Start() {
 		['X','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','X'],
 		['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'],
 		]
-	   rnd_i=getRndInteger(1,5)
-	   rnd_j=getRndInteger(1,5)
+	   rnd_i=2
+	   rnd_j=2
+	available_board=[]
 	for (var i = 0; i < board.length; i++) {
 		for(var j = 0; j < board[i].length ; j++){
 			if(board[i][j] === '.'){
 				food_counter++;
+				available_board.push([i,j])
 			}
 		}
-		showPage("settings")
-
 	}
-
+	fill_food()
 	shape.i = getRndInteger(13,15);//random number between
 	shape.j = getRndInteger(11,16);
 	console.log("i:"+shape.i)
@@ -145,18 +156,8 @@ function Draw() {
 			}
 			//TODO - add random generator for good spread of balls.
 			// According to the number of balls chosen by the user.
-			if (board[i][j] === '.') {
-				if(drawn_balls == false){
-					let which_ball = paintFood(i, j, center, number_of_fives, number_of_fifteens, number_of_twenty_fives)
-					if(which_ball === 5)
-						number_of_fives--;
-					else if(which_ball === 15)
-						number_of_fifteens--;
-					else if(which_ball === 25)
-						number_of_twenty_fives--;
-				}
-			}
-			else if(board[i][j] === '5'){
+
+			if(board[i][j] === '5'){
 				drawFivePointBall(center, color_five_point_ball);
 			}
 			else if(board[i][j] === '15'){
@@ -165,7 +166,15 @@ function Draw() {
 			else if(board[i][j] === '25'){
 				drawTwentyFivePointBall(center, color_twenty_five_point_ball);
 			}
-
+			else if(board[i][j]==='clock'){
+				drawClock()
+			}
+			else if(board[i][j]==='skull'){
+				drawSkull()
+			}
+			else if(board[i][j]==='heart'){
+				drawHeart()
+			}
 			else if (board[i][j] === 'X') {
 				context.beginPath();
 				context.rect(center.x - 20, center.y - 20, 40, 40);
@@ -174,7 +183,6 @@ function Draw() {
 				context.fillStyle = "blue"; //color
 				context.fill();
 			}
-
 			 else if( board[i][j] === '_' ){
 				 if(i === shape.i && j === shape.j){
 					if(currDirection === "R") {
@@ -211,21 +219,30 @@ function checkIfItsFood(x, y){
 	else if(board[x][y] === '15'){
 		return 15;
 	}
+	else if(board[x][y]=='clock'){
+		return -1
+	}
+	else if(board[x][y]=='heart'){
+		return -2
+	}
+	else if(board[x][y]=='skull'){
+		return -3
+	}
 	else return 1;
 }
 
 function caughtByMonster() {
 
-	if(shape.i === pink_monster_location.i && shape.j === pink_monster_location.j){
+	if(is_pink_available&& shape.i === pink_monster_location.i && shape.j === pink_monster_location.j){
 		return true
 	}
-	if(shape.i === blue_monster_location.i && shape.j === blue_monster_location.j){
+	if( shape.i === blue_monster_location.i && shape.j === blue_monster_location.j){
 		return true
 	}
-	if(shape.i === red_monster_location.i && shape.j === red_monster_location.j){
+	if(is_red_available&& shape.i === red_monster_location.i && shape.j === red_monster_location.j){
 		return true
 	}
-	if(shape.i === yellow_monster_location.i && shape.j === yellow_monster_location.j){
+	if(is_yellow_available&& shape.i === yellow_monster_location.i && shape.j === yellow_monster_location.j){
 		return true
 	}
 }
@@ -247,10 +264,12 @@ function UpdatePosition() {
 			currDirection="U"
 			food = checkIfItsFood(shape.i, shape.j)
 			if(food !== 1){
-				score+= food;
-				console.log("omnomnonmonmnonm")
-				document.getElementById("lblScore").value = score
-
+				if(food<0) {checkSpecialFood(food)}
+				else {
+					score += food;
+					console.log("omnomnonmonmnonm")
+					document.getElementById("lblScore").value = score
+				}
 			}
 			board[shape.i][shape.j] = '_';
 		}
@@ -261,9 +280,11 @@ function UpdatePosition() {
 			currDirection="D"
 			food = checkIfItsFood(shape.i, shape.j)
 			if(food !== 1){
+				if(food<0) {checkSpecialFood(food)}
+				else {
 				score+= food;
-				console.log("omnomnonmonmnonm")
 				document.getElementById("lblScore").value = score
+			}
 			}
 			board[shape.i][shape.j] = '_';
 		}
@@ -273,10 +294,14 @@ function UpdatePosition() {
 			shape.i--;
 			currDirection="L"
 			food = checkIfItsFood(shape.i, shape.j)
-			if(food !== 1){
-				score+= food;
-				console.log("omnomnonmonmnonm")
-				document.getElementById("lblScore").value = score
+			if(food !== 1) {
+				if (food < 0) {
+					checkSpecialFood(food)
+				} else {
+					score += food;
+					console.log("omnomnonmonmnonm")
+					document.getElementById("lblScore").value = score
+				}
 			}
 			board[shape.i][shape.j] = '_';
 		}
@@ -286,10 +311,13 @@ function UpdatePosition() {
 			shape.i++;
 			currDirection="R"
 			food = checkIfItsFood(shape.i, shape.j)
-			if(food !== 1){
-				score+= food;
-				console.log("omnomnonmonmnonm")
-				document.getElementById("lblScore").value = score
+			if(food !== 1) {
+				if (food < 0) {
+					checkSpecialFood(food)
+				} else {
+					score += food;
+					document.getElementById("lblScore").value = score
+				}
 			}
 			board[shape.i][shape.j] = '_';
 

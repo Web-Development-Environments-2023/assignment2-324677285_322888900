@@ -19,7 +19,6 @@ function randomSettingsGenerator(){
     let fives = document.getElementById("5_ball_color");
     let fifteens = document.getElementById("15_ball_color");
     let twenty_fives = document.getElementById("25_ball_color");
-
     Timer.value = "" + getRndInteger(60, 200);
     NumOfBalls.value = "" + getRndInteger(50, 90);
     selectRandomRadioButton(Monsters)
@@ -64,8 +63,8 @@ function startGame(){
         else {
             game_timer = parseFloat(game_timer)
             number_of_balls = parseInt(num_of_balls)
-            number_of_fives = 0.6 * number_of_balls
-            number_of_fifteens = 0.3 * number_of_balls
+            number_of_fives = parseInt(0.6 * number_of_balls)
+            number_of_fifteens = parseInt(0.3 * number_of_balls)
             number_of_twenty_fives = 0.1 * number_of_balls
             Start()
             switchScreens("game_screen")

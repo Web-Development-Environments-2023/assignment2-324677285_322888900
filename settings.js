@@ -7,8 +7,8 @@ var number_of_fives;
 var number_of_fifteens;
 var number_of_twenty_fives;
 var number_of_monsters;
-var time_counter;
 var game_timer;
+var type_of_keys;
 //TODO: add option to choose keys with keyboard
 
 function randomSettingsGenerator(){
@@ -43,12 +43,23 @@ function selectRandomRadioButton(arr) {
     element.checked = true;
 }
 
+function getTypeOfKeys(keys) {
+    for(let i = 0; i < keys.length; i++){
+        if (keys[i].checked === true){
+            return keys[i].value;
+        }
+    }
+    return "updown" //default
+}
+
 //TODO: switch to game and pass and validate values
 function startGame(){
     game_timer = $('#GameTime').val()
     let num_of_balls = $('#NumOfBalls').val()
-    let Monsters = document.getElementsByClassName("monster_picker")
-    number_of_monsters = get_number_of_monsters(Monsters)
+    let monsters = document.getElementsByClassName("monster_picker")
+    let keys = document.getElementsByClassName("keys_picker")
+    number_of_monsters = get_number_of_monsters(monsters)
+    type_of_keys = getTypeOfKeys(keys);
     color_five_point_ball = $('#5_ball_color').val();
     color_fifteen_point_ball = $('#15_ball_color').val();
     color_twenty_five_point_ball = $('#25_ball_color').val();
@@ -72,19 +83,19 @@ function startGame(){
     }
 }
 
-function get_number_of_monsters(Monsters){
-    for(let i = 0; i < Monsters.length; i++){
-        if (Monsters[i].checked == true){
-            if (Monsters[i].value == "one_monsters"){
+function get_number_of_monsters(monsters){
+    for(let i = 0; i < monsters.length; i++){
+        if (monsters[i].checked === true){
+            if (monsters[i].value === "one_monsters"){
                 return 1
             }
-            if (Monsters[i].value == "two_monsters"){
+            if (monsters[i].value === "two_monsters"){
                 return 2
             }
-            if (Monsters[i].value == "three_monsters"){
+            if (monsters[i].value === "three_monsters"){
                 return 3
             }
-            if (Monsters[i].value == "four_monsters"){
+            if (monsters[i].value === "four_monsters"){
                 return 4
             }
         }

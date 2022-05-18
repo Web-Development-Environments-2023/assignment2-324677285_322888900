@@ -4,13 +4,13 @@ var color_twenty_five_point_ball;
 var skull_location=new Object()
 var clock_location=new Object()
 var heart_location=new Object()
-clock_img.src = 'media/clock.png';
+clock_img.src = 'media/pill.png';
 heart_img.src = 'media/heart.png';
-skull_img.src = 'media/skull.png';
+skull_img.src = 'media/green_skull.png';
 
 
 function fill_food(){
-    cntr=food_counter
+    cntr = food_counter
     while(cntr>0){
         let index=getRndInteger(0,available_board.length-1)
         let indexes=available_board[index]

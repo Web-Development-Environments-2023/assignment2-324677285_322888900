@@ -2,15 +2,14 @@ var blue_monster_img = new Image()
 var pink_monster_img = new Image()
 var yellow_monster_img = new Image();
 var red_monster_img = new Image()
-blue_monster_img.src = "media/blue_monster.png"
-pink_monster_img.src = "media/pink_monster.jpg"
-yellow_monster_img.src = "media/yellow_monster.png"
-red_monster_img.src = "media/red_monster.jpg"
+blue_monster_img.src = "media/blue_monster-removebg-preview.png"
+pink_monster_img.src = "media/pink_monster-removebg-preview.png"
+yellow_monster_img.src = "media/yellow_monster-removebg-preview.png"
+red_monster_img.src = "media/red_monster-removebg-preview.png"
 var blue_monster_location = new Object();
 var pink_monster_location = new Object();
 var yellow_monster_location = new Object();
 var red_monster_location = new Object();
-//TODO - add special monster
 
 function drawMonsters(shold_move){
 

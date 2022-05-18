@@ -21,6 +21,8 @@
 	<body>
 		<div id="header_div">
 			<header>
+<!--				<img src="media/black_logo-removebg-preview.png" style=" background:transparent; height: 200px; width:190px;">-->
+
 				<h1 class="header_content">
 					Niv and Katya's Packman Game
 				</h1>
@@ -34,9 +36,7 @@
 					</button>
 				</li>
 				<li>
-					<button onclick="openAboutModal()">
-						About
-					</button>
+					<button id="myBtn">About</button>
 				</li>
 				<li>
 					<button onclick="switchScreens('login_screen')">
@@ -100,11 +100,13 @@
 				<div class="login_signin">    
 				<form id="signin">    
 					<label><b>User Name</b></label>  
-					<input type="text" name="Uname" class="input_box" id="user_name_signin_box" placeholder="Username">    
+					<input type="text" name="Uname" class="input_box" id="user_name_signin_box" placeholder="Username">
+					<br>
 					<br>
 					<br>    
 					<label><b>Password</b></label>        
 					<input type="Password" name="Pass" class="input_box" id="password_signin_box" placeholder="Password">    
+					<br>
 					<br>
 					<br>    
 					<label><b>Full Name</b></label>       
@@ -117,7 +119,7 @@
 					<br>
 					<label><b>Date Of Birth</b></label>
 					<br>
-					<input type="text" name="date" class="input_box" id="date_box" placeholder="dd/mm/yyyy">
+					<input type="date" name="date" class="input_box" id="date_box" placeholder="yyyy-mm-dd">
 					<br>
 					<br> 
 					<input type="button" name="sgn" class="input_button" id="signin_button" value="Sign In Here" onclick="sign_into_system()">       
@@ -130,17 +132,32 @@
 				<h2>Settings</h2>
 				<div class="settings">
 				<form>
+<!--					<p>Choose UP key by pressing it inside the input box</p>-->
+<!--					<input id="up_key" type="text" size="40" onkeydown="setKey(value)">-->
+<!--					<br>-->
+<!--					<p>Choose DOWN key by pressing it inside the input box</p>-->
+<!--					<input id="down_key" type="text" size="40" onkeydown="setKey(value)">-->
+<!--					<br>-->
+<!--					<p>Choose LEFT key by pressing it inside the input box</p>-->
+<!--					<input id="left_key" type="text" size="40" onkeydown="setKey(value)">-->
+<!--					<br>-->
+<!--					<p>Choose RIGHT key by pressing it inside the input box</p>-->
+<!--					<input id="right_key" type="text" size="40" onkeydown="setKey(value)">-->
+<!--					<br>-->
+
 					<label>
 						<input type="radio" name="choose_key" class="keys_picker" value="updown">
-						<img src="media/updown.jpg" height="300px" width="300px">
+						<img src="media/updown.png" height="150px" width="150px">
 					</label>
 					<label>
 						<input type="radio" name="choose_key" class="keys_picker" value="wrap">
-						<img src="media/wrap.jpg" height="300px" width="300px">
+						<img src="media/wrap.png" height="150px" width="150px">
 					</label>
 				</form>
 					<label><b>Please enter number of balls (Number between 50-90)</b></label>
 					<input type="text" name="NumOfBalls" class="input_box" id="NumOfBalls">
+					<br>
+					<br>
 					<br>
 					<label><b>Please enter game time in seconds (Minimum 60)</b></label>
 					<input type="text" name="Game Time" class="input_box" id="GameTime">
@@ -160,19 +177,6 @@
 					</select>
 					<br>
 					<br>
-<!--					<label><b>5 Points balls</b></label>-->
-<!--					<form>-->
-<!--						<label>-->
-<!--							<input text="blue" type="radio" name="choose_5" class="choose_5" value="blue">-->
-<!--							Blue-->
-<!--						</label>-->
-
-<!--						<label>-->
-<!--							<input text="purple" type="radio" name="choose_5" class="choose_5" value="purple">-->
-<!--							Purple-->
-<!--						</label>-->
-<!--					</form>-->
-<!--					<label><b>10 Points balls</b></label>-->
 					<label><b>15 Points balls color:</b></label>
 					<select name="15 Points balls" id="15_ball_color">
 						<option value="green">Green</option>
@@ -187,18 +191,6 @@
 					</select>
 					<br>
 					<br>
-<!--					<form>-->
-<!--						<label>-->
-<!--							<input text="red" type="radio" name="choose_15" class="choose_15" value="red">-->
-<!--							Red-->
-<!--						</label>-->
-
-<!--						<label>-->
-<!--							<input text="orange" type="radio" name="choose_15" class="choose_15" value="orange">-->
-<!--							Orange-->
-<!--						</label>-->
-<!--					</form>-->
-<!--					<label><b>25 Points balls</b></label>-->
 					<label><b>25 Points balls color:</b></label>
 					<select name="25 Points balls" id="25_ball_color">
 						<option value="green">Green</option>
@@ -211,17 +203,6 @@
 						<option value="red">Red</option>
 						<option value="aqua">Aqua</option>
 					</select>
-<!--					<form>-->
-<!--						<label>-->
-<!--							<input text="white" type="radio" name="choose_25" class="choose_25" value="white">-->
-<!--							White-->
-<!--						</label>-->
-
-<!--						<label>-->
-<!--							<input text="green" type="radio" name="choose_25" class="choose_25" value="green">-->
-<!--							Green-->
-<!--						</label>-->
-<!--					</form>-->
 					<br>
 					<br>
 					<label><b>Number Of Monsters</b></label>
@@ -252,14 +233,33 @@
 				</div>
 				</div>
 			</div>
-			<dialog id="about_dialog">
-				<h3 style="text-align: center;">About us:</h3>
-				<p>We are Niv Fono and Katya Donchenko, third year students at BGU.</p>
-				<p>This game website is our second project in a web development course.</p>
-				<p>We used JQuery</p>
-				<br>
-				<button onclick="closeAboutModal()">Close dialog</button>
-				</dialog>
+			<!-- The Modal -->
+			<div id="myModal" class="modal">
+
+				<!-- Modal content -->
+				<div class="modal-content">
+					<span class="close">&times;</span>
+					<h3 style="text-align: center;">About us:</h3>
+					<p>We are Niv Fono and Katya Donchenko, third year students at BGU.</p>
+					<p>This game website is our second project in a web development course.</p>
+					<p>We used JQuery in the login and sign in process, when we needed to get the input value from
+						input boxes. In the Settings page we used JQuery to get the user choises of the colors,
+						key board and monsters amount.
+						Also we used it to be able to hide and show the different pages </p>
+					<p>
+						All these helped us to get the values from the DOM elements in a very easy way.
+					</p>
+					<p>
+						Through the development process we had some difficulties at the beginning to understand how to
+						work with JQuery syntax and when. Another difficulty was to understand where we need to write
+						the scripts. And the last challenge was to find a smart way to spread the
+						different kinds of balls randomly on the game board.
+					</p>
+					<p>
+						This project was challenging but that's the best practice we could get in web development!
+					</p>
+				</div>
+			</div>
 
 			<div class="screen" id="game_screen" style="display:none">
 				<h2 style="color: blue;">

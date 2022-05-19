@@ -137,7 +137,7 @@ function GetKeyPressed() {
 				return 4;
 			}
 		}
-		else{ //fix the numbers - keys are wrong
+		else{
 			//UP - W
 			if (keysDown[87]) {
 				return 1;
@@ -299,7 +299,7 @@ function UpdatePosition() {
 	time_elapsed = (currentTime - start_time) / 1000;
 	time_left = parseInt(game_timer - time_elapsed);
 	console.log(balls_remain)
-	if(time_left <= 0||check_win()){
+	if(time_left <= 0 || check_win()){
 		if(score <= 100){
 			alert("You are better then "+score);
 			window.clearInterval(interval);
@@ -381,8 +381,6 @@ function UpdatePosition() {
 				}
 			}
 			board[shape.i][shape.j] = '_';
-
-
 		}
 	}
 	board[shape.i][shape.j] = '_';

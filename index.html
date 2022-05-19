@@ -61,7 +61,7 @@
 					To start the game you need first to log in
 				</p>
 				<br>
-				<button    onclick="switchScreens('login_screen')" >
+				<button onclick="switchScreens('login_screen')" >
 					Log in
 				</button>
 				<br>
@@ -78,44 +78,46 @@
 				<h2>Login Page</h2><br>    
 				<div class="login_signin">    
 				<form id="login">    
-					<label><b>User Name     
-					</b>    
-					</label>    
+					<label><b>User Name</b></label>
+					<br>
 					<input type="text" name="Uname" class="input_box" id="user_name_login_box" placeholder="Username">    
-					<br><br>    
-					<label><b>Password     
-					</b>    
-					</label>    
+					<br>
+					<br>
+					<label><b>Password</b></label>
+					<br>
 					<input type="Password" name="Pass" class="input_box" id="password_login_box" placeholder="Password">    
-					<br><br>    
+					<br>
+					<br>
 					<input type="button" name="log" class="input_button" id="login_button" value="Log In Here" onclick="log_into_system()">       
-					<br><br>      
+					<br>
+					<br>
 				</form>   
 				</div>  
 				
 			</div>
 			<div class="screen" id="signin_screen" style="display:none">
-				
 				<h2>Signin Page</h2><br>    
 				<div class="login_signin">    
 				<form id="signin">    
-					<label><b>User Name</b></label>  
+					<label><b>User Name</b></label>
+					<br>
 					<input type="text" name="Uname" class="input_box" id="user_name_signin_box" placeholder="Username">
 					<br>
-					<br>
 					<br>    
-					<label><b>Password</b></label>        
+					<label><b>Password</b></label>
+					<br>
 					<input type="Password" name="Pass" class="input_box" id="password_signin_box" placeholder="Password">    
 					<br>
-					<br>
 					<br>    
-					<label><b>Full Name</b></label>       
+					<label><b>Full Name</b></label>
+					<br>
 					<input type="text" name="Fname" class="input_box" id="full_name_box" placeholder="Full name">    
 					<br>
 					<br> 
 					<label><b>Email</b></label>  
 					<br>   
 					<input type="text" name="email" class="input_box" id="email_box" placeholder="Email">    
+					<br>
 					<br>
 					<label><b>Date Of Birth</b></label>
 					<br>
@@ -131,29 +133,30 @@
 			<div class="screen" id="settings" style="display:none">
 				<h2>Settings</h2>
 				<div class="settings">
-					<form>
-						<input type="radio" name="key_gen" class="auto_or_manual_key_chooser" value="manual_keys">
-						<br>
+					<button onclick="switchKeysDiv('set_keys')" > Famous key combinations </button>
+					<button onclick="switchKeysDiv('manual_keys')" > Custom key combination </button>
+					<div class="keyboard_setting_div" id="manual_keys" style="display:none">
 						<lable>
 							<p>Choose UP key by pressing it inside the input box</p>
-							<input id="up_key" type="text" size="40" onkeydown="keyChosenUp(event)">
+							<input id="up_key" type="text" size="40" onkeydown="keyChosenUp(event)" placeholder="example: w">
 							<br>
 							<p>Choose DOWN key by pressing it inside the input box</p>
-							<input id="down_key" type="text" size="40" onkeydown="keyChosenDown(event)">
+							<input id="down_key" type="text" size="40" onkeydown="keyChosenDown(event)" placeholder="example: s">
 							<br>
 							<p>Choose LEFT key by pressing it inside the input box</p>
-							<input id="left_key" type="text" size="40" onkeydown="keyChosenLeft(event)">
+							<input id="left_key" type="text" size="40" onkeydown="keyChosenLeft(event)" placeholder="example: a">
 							<br>
 							<p>Choose RIGHT key by pressing it inside the input box</p>
-							<input id="right_key" type="text" size="40" onkeydown="keyChosenRight(event)">
+							<input id="right_key" type="text" size="40" onkeydown="keyChosenRight(event)" placeholder="example: d">
 							<br>
 						</lable>
-						<input type="radio" name="key_gen" class="auto_or_manual_key_chooser" value="set_keys">
+					</div>
+					<div class="keyboard_setting_div" id="set_keys">
 						<label>
 							<br>
 							<form>
 								<label>
-									<input type="radio" name="choose_key" class="keys_picker" value="updown">
+									<input id="default_key" type="radio" name="choose_key" class="keys_picker" value="updown" checked="checked">
 									<img src="media/updown.png" height="150px" width="150px">
 								</label>
 								<label>
@@ -162,14 +165,15 @@
 								</label>
 							</form>
 						</label>
-					</form>
-					<label><b>Please enter number of balls (Number between 50-90)</b></label>
-					<input type="text" name="NumOfBalls" class="input_box" id="NumOfBalls">
+					</div>
+					<br>
+					<label><b>Please enter number of balls</b></label>
+					<input type="text" name="NumOfBalls" class="input_box" id="NumOfBalls" placeholder="Number in the range 50-90">
 					<br>
 					<br>
 					<br>
-					<label><b>Please enter game time in seconds (Minimum 60)</b></label>
-					<input type="text" name="Game Time" class="input_box" id="GameTime">
+					<label><b>Please enter game time in seconds</b></label>
+					<input type="text" name="Game Time" class="input_box" id="GameTime" placeholder="Number bigger then 60s">
 					<br>
 					<br>
 					<label><b>5 Points balls color:</b></label>
@@ -286,9 +290,39 @@
 					<canvas id="canvas" tabindex="0" height="540" width="610"></canvas>
 				</div>
 				<div class="second_box">
-					<h3>
-						Game Settings
-					</h3>
+					<h2>
+						Game Settings:
+					</h2>
+					<p>
+						Keys:
+						<label id="show_what_keys_chosen"></label>
+					</p>
+					<p>
+						Number of Monsters:
+						<label id="const_num_of_monsters"></label>
+					</p>
+					<p>
+						Game time:
+						<label id="const_game_time"></label>
+					</p>
+					<p>
+						Total number of balls:
+						<label id="total_quantity"></label>
+					</p>
+						<p>
+							25 points balls:
+							<h3 id="25_color"> </h3>
+						</p>
+						<p>
+							15 points balls:
+							<h3 id="15_color"> </h3>
+						</p>
+						<p>
+							5 points balls:
+							<h3 id="5_color"> </h3>
+						</p>
+					</p>
+
 				</div>
 			</div>
 		

@@ -40,9 +40,8 @@ function fill_food(){
         cntr--
     }
     extra_functionality()
-
-
 }
+
 function extra_functionality(){
     let index = getRndInteger(0, available_board.length - 1)
     let indexes = available_board[index]
@@ -66,17 +65,18 @@ function extra_functionality(){
 }
 
 function checkSpecialFood(food){
-    if(food==-1){
-        document.getElementById("lblTime").value = time_elapsed-5000
-        time_elapsed-=5000
+    if(food === -1){
+        game_timer = parseInt(game_timer + 10);
+        document.getElementById("lblTime").value = game_timer
+
     }
-    else if(food==-2){
-        fails++
+    else if(food === -2){
+        fails++;
         document.getElementById("lblFails").value = fails
 
     }
     else {
-        fails--
+        fails--;
         document.getElementById("lblFails").value = fails
 
     }

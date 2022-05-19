@@ -105,3 +105,4 @@ function setUpMonsters(){
     red_monster_location.j = board[0].length - 2
 
 }
+

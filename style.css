@@ -1,4 +1,46 @@
-  
+
+label{
+    font-family: Impact;
+    font-size: large;
+    text-align: center;
+}
+
+p{
+    font-family: Impact;
+    font-size: larger;
+    text-align: center;
+}
+
+h2, h3, h1{
+    font-family: Impact;
+    text-align: center;
+}
+
+button {
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #aa00ff;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+    font-family: Impact;
+
+}
+
+button:hover {background-color: #bf3fd9
+}
+
+button:active {
+    background-color: #0523b0;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
 /* ---------------------------*-menue-style-*-------------------------------- */
 
 ul.nav {
@@ -15,30 +57,7 @@ ul.nav {
   /*  !*background-color: #2779BF;*!*/
   /*  background-color: rgba(255,255,255,0.5);*/
   /*}*/
-  ul.nav > li > button {
-      display: inline-block;
-      padding: 15px 25px;
-      font-size: 24px;
-      cursor: pointer;
-      text-align: center;
-      text-decoration: none;
-      outline: none;
-      color: #fff;
-      background-color: #aa00ff;
-      border: none;
-      border-radius: 15px;
-      box-shadow: 0 9px #999;
 
-  }
-
-ul.nav > li > button:hover {background-color: #bf3fd9
-}
-
-ul.nav > li > button:active {
-    background-color: #0523b0;
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
-}
 
   /* ---------------------------*-header-style-*-------------------------------- */
 
@@ -112,6 +131,7 @@ h2.screen{
     text-align: center;
     color: #0523b0;
     padding: 20px;
+    font-family: Impact;
 }  
 
 .screen > div > form > label {  
@@ -166,28 +186,23 @@ span.screen{
 
 #game_screen{
   background-color: rgba(255,255,255,0.5);
-  height: 700px;
-  width: auto;
+  height: 800px;
+  /*width: auto;*/
 }
 
 #canvas{
     background-color: black;
-    border:1px solid blue;
+    border:1px solid #0523b0;
 }
 
-
-/*.div_child {*/
-/*    width: 50%;*/
-/*    float: left;*/
-/*    padding: 20px;*/
-/*    border: 2px solid red;*/
-/*}*/
-
 .first_box {
-    /*width:300px;*/
+    width:300px;
     float:left;
-    /*height: 150px;*/
-    /*margin: 50px*/
+    height: 150px;
+    margin: 50px;
+    text-decoration-color: #0523b0;
+    font-weight: bold;
+    font-family: Impact;
 }
 
 /*.first-box p {*/
@@ -197,11 +212,13 @@ span.screen{
 /*}*/
 
 .second_box {
-    /*width:300px;*/
-    /*height: 150px;*/
+    width:300px;
+    height: 150px;
     float:right;
     text-align: center;
-    /*margin: 50px*/
+    margin: 50px;
+    text-decoration-color: #0523b0;
+    font-weight: bold;
 }
 
 /* ---------------------------modal screen--------------------- */

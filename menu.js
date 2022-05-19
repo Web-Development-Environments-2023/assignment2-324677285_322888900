@@ -10,6 +10,7 @@ function showPage(pageName){
     if(pageName === "game_screen"){
         let str = "Good Luck " + logged_in + ", and don't mess it up!"
         document.getElementById("game_label").innerHTML = str
+
     }
 }
 

@@ -89,7 +89,12 @@ var keyboard_choise;
         let keys_chooser = document.getElementsByClassName("auto_or_manual_key_chooser");
         keyboard_choise = getTypeOfKeys(keys_chooser);
         console.log(keyboard_choise)
+        let flag_of_free_keys
+        flag_of_free_keys=false
+        if(keys_chooser[0].checked===true){
+            flag_of_free_keys=true
 
+        }
         game_timer = $('#GameTime').val()
         let num_of_balls = $('#NumOfBalls').val()
         let monsters = document.getElementsByClassName("monster_picker")
@@ -99,21 +104,26 @@ var keyboard_choise;
         color_five_point_ball = $('#5_ball_color').val();
         color_fifteen_point_ball = $('#15_ball_color').val();
         color_twenty_five_point_ball = $('#25_ball_color').val();
-        if (isNaN(game_timer) || isNaN(+num_of_balls) || number_of_monsters === 0 || color_fifteen_point_ball == null ||
+        if (keyboard_choise==="updown"||isNaN(game_timer) || isNaN(+num_of_balls) || number_of_monsters === 0 || color_fifteen_point_ball == null ||
             color_five_point_ball == null || color_twenty_five_point_ball == null) {
             alert("please enter valid details")
         } else {
             if (parseInt($("#NumOfBalls").val()) > 90 || parseInt($("#NumOfBalls").val()) < 50 || parseInt($("#GameTime").val()) < 60) {
                 alert("please enter valid details")
             } else {
-                game_timer = parseFloat(game_timer)
-                number_of_balls = parseInt(num_of_balls)
-                number_of_fives = parseInt(0.6 * number_of_balls)
-                number_of_fifteens = parseInt(0.3 * number_of_balls)
-                number_of_twenty_fives = parseInt(0.1 * number_of_balls)
-                Start()
-                switchScreens("game_screen")
-            }
+                if(flag_of_free_keys&&(typeof left_button==='undefined'||typeof right_button==='undefined'||typeof down_button==='undefined'||typeof up_button==='undefined')){
+                    alert("please enter valid details in inputs")
+                }
+                else {
+                    game_timer = parseFloat(game_timer)
+                    number_of_balls = parseInt(num_of_balls)
+                    number_of_fives = parseInt(0.6 * number_of_balls)
+                    number_of_fifteens = parseInt(0.3 * number_of_balls)
+                    number_of_twenty_fives = parseInt(0.1 * number_of_balls)
+                    Start()
+                    switchScreens("game_screen")
+                }
+                }
         }
     }
 

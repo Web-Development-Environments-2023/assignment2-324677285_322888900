@@ -18,18 +18,24 @@ function fill_food(){
             board[indexes[0]][indexes[1]] = '15'
             available_board.splice(indexes, 1)
             number_of_fifteens--;
+            balls_remain++;
+
         }
         else if(number_of_twenty_fives > 0){
 
             board[indexes[0]][indexes[1]] = '25'
             available_board.splice(indexes, 1)
             number_of_twenty_fives--;
+            balls_remain++;
+
         }
         else if(number_of_fives>0){
 
             board[indexes[0]][indexes[1]] = '5'
             available_board.splice(indexes, 1)
             number_of_fives--;
+            balls_remain++;
+
         }
         cntr--
     }
@@ -119,19 +125,19 @@ function drawTwentyFivePointBall(center, color) {
 function moveRandomExtra(location){
     let temp=getRndInteger(0,3)
     if(getRndInteger(0,10000)>4) {
-        if (temp && board[location.i - 1][location.j] !== 'X') {
+        if (temp && board[location.i - 1][location.j] === '.') {
             location.i -= 1
             return location
         }
-        if (temp && board[location.i + 1][location.j] !== 'X') {
+        if (temp && board[location.i + 1][location.j] === '.') {
             location.i += 1
             return location
         }
-        if (temp && board[location.i][location.j - 1] !== 'X') {
+        if (temp && board[location.i][location.j - 1] === '.') {
             location.j -= 1
             return location
         }
-        if (temp && board[location.i][location.j + 1] !== 'X') {
+        if (temp && board[location.i][location.j + 1] === '.') {
             location.j += 1
             return location
         }

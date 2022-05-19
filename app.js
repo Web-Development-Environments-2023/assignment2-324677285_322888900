@@ -26,7 +26,7 @@ var clock_img=new Image()
 var square_size = 20;
 var pacman_size = 20;
 var border_size = 10;
-
+var balls_remain;
 
 
 
@@ -40,6 +40,7 @@ function Start() {
 	fails = 5;
 	pac_color = "yellow";
 	food_counter = 0;
+	balls_remain=0;
 	start_time = new Date();
 	time_elapsed = 0;
 	board = [
@@ -277,16 +278,28 @@ function caughtByMonster() {
 	}
 }
 
+function check_win(){
+	for (let i=0;i<board.length;i++){
+		for(let j=0;j<board[0].length;j++){
+			if(board[i][j]==="25")
+				return false
+			if(board[i][j]==="15")
+				return false
+			if(board[i][j]==="5")
+				return false
+		}
+	}
+	return true
 
+}
 
 function UpdatePosition() {
-
 	let food;
 	currentTime = new Date()
 	time_elapsed = (currentTime - start_time) / 1000;
 	time_left = parseInt(game_timer - time_elapsed);
-
-	if(time_left <= 0){
+	console.log(balls_remain)
+	if(time_left <= 0||check_win()){
 		if(score <= 100){
 			alert("You are better then "+score);
 			window.clearInterval(interval);
@@ -312,6 +325,7 @@ function UpdatePosition() {
 			if(food !== 1){
 				if(food<0) {checkSpecialFood(food)}
 				else {
+					balls_remain--
 					score += food;
 					document.getElementById("lblScore").value = score
 				}
@@ -327,6 +341,7 @@ function UpdatePosition() {
 			if(food !== 1){
 				if(food<0) {checkSpecialFood(food)}
 				else {
+				balls_remain--
 				score+= food;
 				document.getElementById("lblScore").value = score
 			}
@@ -343,6 +358,7 @@ function UpdatePosition() {
 				if (food < 0) {
 					checkSpecialFood(food)
 				} else {
+					balls_remain--
 					score += food;
 					document.getElementById("lblScore").value = score
 				}
@@ -359,6 +375,7 @@ function UpdatePosition() {
 				if (food < 0) {
 					checkSpecialFood(food)
 				} else {
+					balls_remain--
 					score += food;
 					document.getElementById("lblScore").value = score
 				}

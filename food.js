@@ -11,25 +11,25 @@ skull_img.src = 'media/green_skull.png';
 
 function fill_food(){
     cntr = food_counter
-    while(cntr>0){
-        let index=getRndInteger(0,available_board.length-1)
+    while(cntr > 0){
+        let index=getRndInteger(0, available_board.length-1)
         let indexes=available_board[index]
-        if(number_of_fifteens>0){
+        if(number_of_fifteens > 0){
             board[indexes[0]][indexes[1]] = '15'
-            available_board.splice(indexes,1)
-            number_of_fifteens--
+            available_board.splice(indexes, 1)
+            number_of_fifteens--;
         }
-        else if(number_of_twenty_fives>0){
+        else if(number_of_twenty_fives > 0){
 
             board[indexes[0]][indexes[1]] = '25'
-            available_board.splice(indexes,1)
-            number_of_twenty_fives--
+            available_board.splice(indexes, 1)
+            number_of_twenty_fives--;
         }
         else if(number_of_fives>0){
 
             board[indexes[0]][indexes[1]] = '5'
-            available_board.splice(indexes,1)
-            number_of_fives--
+            available_board.splice(indexes, 1)
+            number_of_fives--;
         }
         cntr--
     }
@@ -38,25 +38,25 @@ function fill_food(){
 
 }
 function extra_functionality(){
-    index=getRndInteger(0,available_board.length-1)
-    indexes=available_board[index]
+    let index = getRndInteger(0, available_board.length - 1)
+    let indexes = available_board[index]
     board[indexes[0]][indexes[1]] = 'clock'
-    clock_location.i=indexes[0]
-    clock_location.j=indexes[1]
+    clock_location.i = indexes[0]
+    clock_location.j = indexes[1]
 
-    available_board.splice(indexes,1)
-    index=getRndInteger(0,available_board.length-1)
-    indexes=available_board[index]
+    available_board.splice(indexes, 1)
+    index = getRndInteger(0, available_board.length-1)
+    indexes = available_board[index]
     board[indexes[0]][indexes[1]] = 'heart'
-    heart_location.i=indexes[0]
-    heart_location.j=indexes[1]
+    heart_location.i = indexes[0]
+    heart_location.j = indexes[1]
     available_board.splice(indexes,1)
-    index=getRndInteger(0,available_board.length-1)
-    indexes=available_board[index]
+    index = getRndInteger(0,available_board.length-1)
+    indexes = available_board[index]
     board[indexes[0]][indexes[1]] = 'skull'
     available_board.splice(indexes,1)
-    skull_location.i=indexes[0]
-    skull_location.j=indexes[1]
+    skull_location.i = indexes[0]
+    skull_location.j = indexes[1]
 }
 
 function checkSpecialFood(food){
@@ -81,17 +81,17 @@ function checkSpecialFood(food){
 
 
 function drawClock(){
-    context.drawImage(clock_img, clock_location.i * 30 - 5, clock_location.j * 30 - 5, 20, 20);
+    context.drawImage(clock_img, clock_location.i * square_size - border_size, clock_location.j * square_size - border_size, pacman_size, pacman_size);
 }
 function drawSkull(){
-    context.drawImage(skull_img, skull_location.i * 30 - 5, skull_location.j * 30 - 5, 20, 20);
+    context.drawImage(skull_img, skull_location.i * square_size - border_size, skull_location.j * square_size - border_size, pacman_size, pacman_size);
 }
 function drawHeart(){
-    context.drawImage(heart_img, heart_location.i * 30 - 5, heart_location.j * 30 - 5, 20, 20);
+    context.drawImage(heart_img, heart_location.i * square_size - border_size, heart_location.j * square_size - border_size, pacman_size, pacman_size);
 }
 function drawFivePointBall(center, color) {
     context.beginPath();
-    context.arc(center.x, center.y, 3, 0, 2 * Math.PI); // circle
+    context.arc(center.x - border_size, center.y- border_size, 3, 0, 2 * Math.PI); // circle
     context.fillStyle = color; //color
     context.fill();
     food_counter++;
@@ -99,7 +99,7 @@ function drawFivePointBall(center, color) {
 
 function drawFifteenPointBall(center, color) {
     context.beginPath();
-    context.arc(center.x, center.y, 5, 0, 2 * Math.PI); // circle
+    context.arc(center.x - border_size, center.y - border_size, 5, 0, 2 * Math.PI); // circle
     context.fillStyle = color; //color
     context.fill();
     food_counter++;
@@ -107,7 +107,7 @@ function drawFifteenPointBall(center, color) {
 
 function drawTwentyFivePointBall(center, color) {
     context.beginPath();
-    context.arc(center.x, center.y, 7, 0, 2 * Math.PI); // circle
+    context.arc(center.x - border_size, center.y - border_size, 8, 0, 2 * Math.PI); // circle
     context.fillStyle = color; //color
     context.fill();
     food_counter++;

@@ -1,4 +1,4 @@
-
+var logged_in;
 localStorage.setItem("k","k")
 // let today = new Date();
 // $("#date_box").maxDate = today;
@@ -8,6 +8,7 @@ function log_into_system(){
     let password =  $("#password_login_box").val()
     let result = localStorage.getItem(user_name)
     if (result === password){
+        logged_in = user_name;
         switchScreens('settings')
     }
     else{
@@ -34,6 +35,7 @@ function sign_into_system() {
                         let date_valid = validate_date(date);
                         if(date_valid){
                             localStorage.setItem(user_name, password)
+                            logged_in = user_name;
                             console.log("New user was added!")
                             switchScreens('settings')
                         }

@@ -15,25 +15,25 @@ function drawMonsters(shold_move){
 
     if(shold_move)
         blue_monster_location= moveMonster(blue_monster_location)
-    context.drawImage(blue_monster_img, blue_monster_location.i * 30 - 5, blue_monster_location.j * 30 - 5, 20, 20);
+    context.drawImage(blue_monster_img, blue_monster_location.i * pacman_size - border_size, blue_monster_location.j * pacman_size - border_size, pacman_size, pacman_size);
     if(number_of_monsters>1){
         is_pink_available=true
         if(shold_move)
             pink_monster_location= moveMonster(pink_monster_location)
-        context.drawImage(pink_monster_img, pink_monster_location.i * 30 - 5, pink_monster_location.j * 30 - 5, 20, 20);
+        context.drawImage(pink_monster_img, pink_monster_location.i * pacman_size - border_size, pink_monster_location.j * pacman_size - border_size, pacman_size, pacman_size);
     }
 
     if(number_of_monsters>2){
         is_red_available=true
         if(shold_move)
             red_monster_location= moveMonster(red_monster_location)
-        context.drawImage(red_monster_img, red_monster_location.i * 30 - 5, red_monster_location.j * 30 - 5, 20, 20);
+        context.drawImage(red_monster_img, red_monster_location.i * pacman_size - border_size, red_monster_location.j * pacman_size - border_size, pacman_size, pacman_size);
     }
     if(number_of_monsters>3){
         is_yellow_available=true
         if(shold_move)
             yellow_monster_location= moveMonster(yellow_monster_location)
-        context.drawImage(yellow_monster_img, yellow_monster_location.i * 30 - 5, yellow_monster_location.j * 30 - 5, 20, 20);
+        context.drawImage(yellow_monster_img, yellow_monster_location.i * pacman_size - border_size, yellow_monster_location.j * pacman_size - border_size, pacman_size, pacman_size);
     }
 }
 

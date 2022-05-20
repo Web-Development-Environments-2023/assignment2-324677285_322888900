@@ -133,19 +133,19 @@ function drawTwentyFivePointBall(center, color) {
 function moveRandomExtra(location){
     let temp=getRndInteger(0,3)
     if(getRndInteger(0,10000)>4) {
-        if (temp && board[location.i - 1][location.j] === '.') {
+        if (temp==0 && board[location.i - 1][location.j] === '.') {
             location.i -= 1
             return location
         }
-        if (temp && board[location.i + 1][location.j] === '.') {
+        if (temp==1 && board[location.i + 1][location.j] === '.') {
             location.i += 1
             return location
         }
-        if (temp && board[location.i][location.j - 1] === '.') {
+        if (temp==2 && board[location.i][location.j - 1] === '.') {
             location.j -= 1
             return location
         }
-        if (temp && board[location.i][location.j + 1] === '.') {
+        if (temp==3 && board[location.i][location.j + 1] === '.') {
             location.j += 1
             return location
         }

@@ -168,6 +168,17 @@ function startGame() {
                     || typeof up_button === 'undefined') {
                     alert("Please choose the keys from keyboard!")
                 }
+                else{
+                    game_timer = parseFloat(game_timer)
+                    number_of_balls = parseInt(num_of_balls)
+                    number_of_fives = parseInt(0.6 * number_of_balls)
+                    number_of_fifteens = parseInt(0.3 * number_of_balls)
+                    number_of_twenty_fives = parseInt(0.1 * number_of_balls)
+                    updateSettingsOnScreenGame()
+                    Start()
+                    switchScreens("game_screen")
+
+                }
             }
             else {
                 game_timer = parseFloat(game_timer)
@@ -203,6 +214,12 @@ function get_number_of_monsters(monsters) {
     }
     return 0
 }
+
+
+function clearInput(id,event){
+    document.getElementById(id).value+=event.key
+}
+
 
 function resetAllSettings(){
     $('#GameTime').val(null);

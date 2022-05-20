@@ -22,11 +22,14 @@ var is_yellow_available
 var available_board
 var skull_img=new Image()
 var heart_img=new Image()
-var clock_img=new Image()
+var pill_img=new Image()
 var square_size = 20;
 var pacman_size = 20;
 var border_size = 10;
 var balls_remain;
+var loser_sound ;
+var winner_sound ;
+
 
 function Start() {
 	is_pink_available = false
@@ -92,6 +95,9 @@ function Start() {
 	console.log("i:"+shape.i)
 	console.log("j:"+shape.j)
 	setUpMonsters()
+
+	loser_sound = $('#loser_audio')[0];
+	winner_sound = $('#winner_audio')[0];
 
 
 	keysDown = {};
@@ -282,11 +288,11 @@ function caughtByMonster() {
 function check_win(){
 	for (let i=0;i<board.length;i++){
 		for(let j=0;j<board[0].length;j++){
-			if(board[i][j]==="25")
+			if(board[i][j] === "25")
 				return false
-			if(board[i][j]==="15")
+			if(board[i][j] === "15")
 				return false
-			if(board[i][j]==="5")
+			if(board[i][j] === "5")
 				return false
 		}
 	}
@@ -295,7 +301,6 @@ function check_win(){
 }
 
 function UpdatePosition() {
-	console.log("playing")
 	let food;
 	currentTime = new Date()
 	time_elapsed = (currentTime - start_time) / 1000;
@@ -303,12 +308,15 @@ function UpdatePosition() {
 	console.log(balls_remain)
 	if(time_left <= 0 || check_win()){
 		if(score <= 100){
+			song.pause()
+			loser_sound.play();
 			alert("You are better then "+score);
 			window.clearInterval(interval);
 			switchScreens("settings")
-			song.pause()
 		}
 		else{
+			winner_sound = $('#winner_audio')[0];
+			winner_sound.play();
 			alert("Winner!!");
 			window.clearInterval(interval);
 			switchScreens("settings")
@@ -394,10 +402,11 @@ function UpdatePosition() {
 		score -= 10;
 		document.getElementById("lblScore").value = score;
 		if(fails === 0 ){
+			song.pause()
+			loser_sound.play();
 			window.alert("Loser!")
 			window.clearInterval(interval);
 			switchScreens("settings");
-			song.pause()
 		}
 		else {
 			shape.i = getRndInteger(13,15);//random number between

@@ -57,7 +57,7 @@
 					Welcome to a very cool pacman game!
 				</h2>
 				<p>
-					To start the game you need first to log in
+					To start the game you need first to log in:
 				</p>
 				<br>
 				<button onclick="switchScreens('login_screen')" >
@@ -281,7 +281,6 @@
 				<h2 id="game_label" style="color: blue;">
 					Good luck
 				</h2>
-				<br>
 				<div class="first_box">
 					<label for="lblScore" style="color: blue;">SCORE:</label>
 					<input class = "input_box" id="lblScore" type="text" />
@@ -293,10 +292,13 @@
 					<canvas id="canvas" tabindex="0" height="540" width="610"></canvas>
 				</div>
 				<div class="second_box">
-					<audio id="audio" src="media/Positive-Hip-Hop.mp3" controls autoplay="true">Your browser does not support the audio element.</audio>
+					<audio id="audio" src="media/Positive-Hip-Hop.mp3" autoplay="true">Your browser does not support the audio element.</audio>
 					<h2>
 						Game Settings:
 					</h2>
+					<audio id="loser_audio" src="media/looser.mp3" ></audio>
+					<audio id="winner_audio" src="media/yay.mp3" ></audio>
+
 					<p>
 						Keys:
 						<label id="show_what_keys_chosen"></label>
@@ -349,9 +351,12 @@
 				</div>
 				<div id="contact_us" class="footer_info">
 					<h4 style="font-size: large">
-						Authors: Katya Donchenko & Niv Fono
-						 <br>
-						<a href="mailto:katniv@gmail.com">katniv@gmail.com</a>
+						Developers: <a href="https://www.linkedin.com/in/katya-donchenk0/">Katya Donchenko</a> &
+						<a href="https://www.linkedin.com/in/niv-fono-7189661a5/"> Niv Fono </a>
+					</h4>
+					<h4>
+						<a href="mailto:donchkat@post.bgu.ac.il">katyad@gmail.com</a> |
+						<a href="mailto:fono@post.bgu.ac.il">nivf@gmail.com</a>
 					</h4>
 				</div>
 				<div id="info" class="footer_info">
@@ -359,6 +364,8 @@
 						About:
 						Pacman game that allows you to gain score by eating food balls. There are 3 types of balls
 						that are different from each other in their color, size and number of points they give.
+						If you manage to eat all the food - you win. But be careful of the monsters,
+						they are quite smart when you get closer.
 						The game is limited in time - you choose how much time you need to win it.
 						To start playing you need to log in into the system or sign in if it's your first time.
 					</h4>

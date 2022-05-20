@@ -13,7 +13,7 @@ Link to the game: https://web-development-environments-2022.github.io/assignment
 
 ## The functionality we added:
 
-- Green Skull that takes you one lifeץ
+- Green Skull that takes you one life.
 - Red heart that adds you one life.
 - Clock that adds you 10 seconds.
 

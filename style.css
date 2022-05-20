@@ -10,7 +10,11 @@ p{
     font-size: larger;
     text-align: center;
 }
-
+h4{
+    font-family: "Arial Narrow";
+    text-align: center;
+    font-size: smaller;
+}
 h2, h3, h1{
     font-family: Impact;
     text-align: center;
@@ -62,9 +66,9 @@ ul.nav {
   /* ---------------------------*-header-style-*-------------------------------- */
 
 header {
-    width:900px;
+    /*width:900px;*/
     background-color: rgba(255,255,255,0.5);
-    height: 50px;
+    height: 200px;
     text-align: center;
     padding:10px;
     width:100%;
@@ -73,14 +77,21 @@ header {
 
 footer {
     text-align: center;
-    width:900px;
+    /*width:900px;*/
     background-color: rgba(255,255,255,0.5);
-    height: 50px;
+    height: 200px;
     color: #000000;
     width:100%;
 }
 
+.footer_info{
+    width:300px;
+    height: 50px;
+    float:left;
+    margin-left: 50px;
+    margin-right: 50px;
 
+}
 
 /* ---------------------------*-body style-*-------------------------------- */
 

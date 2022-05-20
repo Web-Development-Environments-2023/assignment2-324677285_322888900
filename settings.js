@@ -71,7 +71,6 @@ function selectDefaultKeys() {
 
 function randomSettingsGenerator() {
     let Monsters = document.getElementsByClassName("monster_picker");
-    let Keys = document.getElementsByClassName("keys_picker")
     let NumOfBalls = document.getElementById("NumOfBalls");
     let Timer = document.getElementById("GameTime");
     let fives = document.getElementById("5_ball_color");
@@ -143,11 +142,11 @@ function updateSettingsOnScreenGame() {
 }
 
 function startGame() {
-    game_timer = $('#GameTime').val()
-    let num_of_balls = $('#NumOfBalls').val()
-    let monsters = document.getElementsByClassName("monster_picker")
-    let keys = document.getElementsByClassName("keys_picker")
-    number_of_monsters = get_number_of_monsters(monsters)
+    game_timer = document.getElementById("GameTime").value
+    let num_of_balls = document.getElementById("NumOfBalls").value
+    let monsters = document.getElementsByClassName("monster_picker");
+    let keys = document.getElementsByClassName("keys_picker");
+    number_of_monsters = get_number_of_monsters(monsters);
     type_of_keys = getTypeOfKeys(keys);
     color_five_point_ball = $('#5_ball_color').val();
     color_fifteen_point_ball = $('#15_ball_color').val();
@@ -178,6 +177,7 @@ function startGame() {
             }
             }
     }
+
 }
 
 function get_number_of_monsters(monsters) {
@@ -198,6 +198,12 @@ function get_number_of_monsters(monsters) {
         }
     }
     return 0
+}
 
-
+function resetAllSettings(){
+    $('#GameTime').val(null);
+    $('#NumOfBalls').val(null);
+    $('#5_ball_color').val(null);
+    $('#15_ball_color').val(null);
+    $('#25_ball_color').val(null);
 }

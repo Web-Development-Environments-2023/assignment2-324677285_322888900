@@ -294,6 +294,7 @@ function check_win(){
 }
 
 function UpdatePosition() {
+	console.log("playing")
 	let food;
 	currentTime = new Date()
 	time_elapsed = (currentTime - start_time) / 1000;

@@ -15,6 +15,10 @@ function showPage(pageName){
 }
 
 function switchScreens(id){
+    if($("#game_screen").is(":visible")){
+        console.log("Game screen is visible");
+        window.clearInterval(interval);
+    }
     hidePages()
     showPage(id)
 }

@@ -13,6 +13,7 @@ var fails;
 var pac_img = new Image();
 pac_img.src = 'media/pacman_icon_L-removebg-preview.png';
 var currentTime;
+var eaten_clock
 var rnd_i
 var rnd_j
 var drawn_balls = false
@@ -23,6 +24,7 @@ var available_board
 var skull_img=new Image()
 var heart_img=new Image()
 var pill_img=new Image()
+var clock_img=new Image()
 var square_size = 20;
 var pacman_size = 20;
 var border_size = 10;
@@ -32,6 +34,7 @@ var winner_sound ;
 
 
 function Start() {
+	eaten_clock= 0
 	is_pink_available = false
 	is_yellow_available = false
 	is_red_available = false
@@ -214,6 +217,9 @@ function Draw() {
 			else if(board[i][j]==='skull'){
 				drawSkull()
 			}
+			else if(board[i][j]==='new clock'){
+				drawNewClock()
+			}
 			else if(board[i][j]==='heart'){
 				drawHeart()
 			}
@@ -266,6 +272,9 @@ function checkIfItsFood(x, y){
 	else if(board[x][y] === 'skull'){
 		return -3
 	}
+	else if(board[x][y]==='new clock'){
+		return -4
+	}
 	else return 1;
 }
 
@@ -304,7 +313,7 @@ function UpdatePosition() {
 	let food;
 	currentTime = new Date()
 	time_elapsed = (currentTime - start_time) / 1000;
-	time_left = parseInt(game_timer - time_elapsed);
+	time_left = parseInt(game_timer - time_elapsed+eaten_clock);
 	console.log(balls_remain)
 	if(time_left <= 0 || check_win()){
 		if(score <= 100){

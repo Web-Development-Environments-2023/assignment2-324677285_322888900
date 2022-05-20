@@ -4,10 +4,11 @@ var color_twenty_five_point_ball;
 var skull_location=new Object()
 var clock_location=new Object()
 var heart_location=new Object()
+var newclock_location=new Object()
 pill_img.src = 'media/pill.png';
 heart_img.src = 'media/heart.png';
 skull_img.src = 'media/green_skull.png';
-
+clock_img.src='media/clock.png';
 
 
 function fill_food(){
@@ -70,6 +71,15 @@ function extra_functionality(){
     available_board.splice(indexes,1)
     skull_location.i = indexes[0]
     skull_location.j = indexes[1]
+    index = getRndInteger(0,available_board.length-1)
+    indexes = available_board[index]
+    board[indexes[0]][indexes[1]] = 'new clock'
+    available_board.splice(indexes,1)
+    newclock_location.i = indexes[0]
+    newclock_location.j = indexes[1]
+
+
+
 }
 
 function checkSpecialFood(food){
@@ -84,10 +94,13 @@ function checkSpecialFood(food){
         document.getElementById("lblFails").value = fails
 
     }
-    else {
+    else if(food=== -3) {
         fails--;
         document.getElementById("lblFails").value = fails
 
+    }
+    else{
+        eaten_clock=5
     }
 
 
@@ -107,6 +120,12 @@ function drawSkull(){
 function drawHeart(){
     context.drawImage(heart_img, heart_location.i * square_size - border_size, heart_location.j * square_size - border_size, pacman_size, pacman_size);
 }
+
+function drawNewClock(){
+    context.drawImage(clock_img, newclock_location.i * square_size - border_size, newclock_location.j * square_size - border_size, pacman_size, pacman_size);
+
+}
+
 function drawFivePointBall(center, color) {
     context.beginPath();
     context.arc(center.x - border_size, center.y- border_size, 3, 0, 2 * Math.PI); // circle

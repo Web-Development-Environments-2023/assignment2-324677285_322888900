@@ -1,7 +1,5 @@
 var logged_in;
 localStorage.setItem("k","k")
-// let today = new Date();
-// $("#date_box").maxDate = today;
 
 function log_into_system(){
     let user_name = $("#user_name_login_box").val()
@@ -113,13 +111,5 @@ function validateUsername(usernameValue) {
 }
 
 function validate_date(birthday) {
-    // let today = new Date();
-    // $("#date_box").maxDate = today;
-    // let bd = Date.parse(birthday)
-    // if(bd > today){
-    //     alert("Can't choose future dates")
-    //     return false;
-    // }
-    // return false
     return true
 }

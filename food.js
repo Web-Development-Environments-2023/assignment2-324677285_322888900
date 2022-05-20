@@ -4,9 +4,10 @@ var color_twenty_five_point_ball;
 var skull_location=new Object()
 var clock_location=new Object()
 var heart_location=new Object()
-clock_img.src = 'media/pill.png';
+pill_img.src = 'media/pill.png';
 heart_img.src = 'media/heart.png';
 skull_img.src = 'media/green_skull.png';
+
 
 
 function fill_food(){
@@ -95,7 +96,7 @@ function checkSpecialFood(food){
 
 
 function drawClock(){
-    context.drawImage(clock_img, clock_location.i * square_size - border_size, clock_location.j * square_size - border_size, pacman_size, pacman_size);
+    context.drawImage(pill_img, clock_location.i * square_size - border_size, clock_location.j * square_size - border_size, pacman_size, pacman_size);
     board[clock_location.i][clock_location.j]="."
     clock_location=moveRandomExtra(clock_location)
     board[clock_location.i][clock_location.j]="clock"

@@ -146,6 +146,7 @@ function updateSettingsOnScreenGame() {
 function startGame() {
     song = $('#audio')[0]
     song.play();
+    song.loop = true;
     game_timer = document.getElementById("GameTime").value
     let num_of_balls = document.getElementById("NumOfBalls").value
     let monsters = document.getElementsByClassName("monster_picker");

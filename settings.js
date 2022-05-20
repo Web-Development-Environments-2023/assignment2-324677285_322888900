@@ -14,6 +14,8 @@ var number_of_monsters;
 var game_timer;
 var type_of_keys;
 var keyboard_choise = "set_keys";
+var music = new Audio();
+var song;
 
 function keyChosenUp(event) {
     let letter = event.key;
@@ -142,6 +144,8 @@ function updateSettingsOnScreenGame() {
 }
 
 function startGame() {
+    song = $('#audio')[0]
+    song.play();
     game_timer = document.getElementById("GameTime").value
     let num_of_balls = document.getElementById("NumOfBalls").value
     let monsters = document.getElementsByClassName("monster_picker");

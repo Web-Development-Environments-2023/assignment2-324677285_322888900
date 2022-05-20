@@ -28,8 +28,6 @@ var pacman_size = 20;
 var border_size = 10;
 var balls_remain;
 
-
-
 function Start() {
 	is_pink_available = false
 	is_yellow_available = false
@@ -94,6 +92,8 @@ function Start() {
 	console.log("i:"+shape.i)
 	console.log("j:"+shape.j)
 	setUpMonsters()
+
+
 	keysDown = {};
 	addEventListener(
 		"keydown",
@@ -306,11 +306,13 @@ function UpdatePosition() {
 			alert("You are better then "+score);
 			window.clearInterval(interval);
 			switchScreens("settings")
+			song.pause()
 		}
 		else{
 			alert("Winner!!");
 			window.clearInterval(interval);
 			switchScreens("settings")
+			song.pause()
 		}
 	}
 	document.getElementById("lblTime").value = time_left
@@ -395,6 +397,7 @@ function UpdatePosition() {
 			window.alert("Loser!")
 			window.clearInterval(interval);
 			switchScreens("settings");
+			song.pause()
 		}
 		else {
 			shape.i = getRndInteger(13,15);//random number between

@@ -73,8 +73,9 @@ function extra_functionality(){
 
 function checkSpecialFood(food){
     if(food === -1){
-        game_timer = parseInt(game_timer + 10);
-        document.getElementById("lblTime").value = game_timer
+        let game_score = parseInt(score+50);
+        score+=game_score
+        document.getElementById("lblScore").value += game_score
 
     }
     else if(food === -2){

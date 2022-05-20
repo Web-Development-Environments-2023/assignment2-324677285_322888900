@@ -315,12 +315,13 @@ function UpdatePosition() {
 			switchScreens("settings")
 		}
 		else{
+			song.pause()
 			winner_sound = $('#winner_audio')[0];
 			winner_sound.play();
 			alert("Winner!!");
 			window.clearInterval(interval);
 			switchScreens("settings")
-			song.pause()
+
 		}
 	}
 	document.getElementById("lblTime").value = time_left

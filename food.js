@@ -41,17 +41,24 @@ function fill_food(){
     }
     extra_functionality()
 }
+function create_clock(){
+    let i=1
+    let j=1
+    console.log(shape)
+    while(board[shape.i+i][shape.j+j]==='X'){
+        i++
+        j++
+    }
+    board[shape.i+i][shape.j+j] = 'clock'
+    clock_location.i = shape.i+i
+    clock_location.j = shape.j+j
+}
 
 function extra_functionality(){
-    let index = getRndInteger(0, available_board.length - 1)
+    create_clock()
+    let index = getRndInteger(0, available_board.length-1)
     let indexes = available_board[index]
-    board[indexes[0]][indexes[1]] = 'clock'
-    clock_location.i = indexes[0]
-    clock_location.j = indexes[1]
-
     available_board.splice(indexes, 1)
-    index = getRndInteger(0, available_board.length-1)
-    indexes = available_board[index]
     board[indexes[0]][indexes[1]] = 'heart'
     heart_location.i = indexes[0]
     heart_location.j = indexes[1]

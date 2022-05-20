@@ -87,9 +87,10 @@ function Start() {
 			}
 		}
 	}
-	fill_food()
 	shape.i = getRndInteger(13,15);//random number between
 	shape.j = getRndInteger(11,16);
+	fill_food()
+
 	console.log("i:"+shape.i)
 	console.log("j:"+shape.j)
 	setUpMonsters()

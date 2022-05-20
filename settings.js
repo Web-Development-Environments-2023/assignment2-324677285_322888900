@@ -14,7 +14,6 @@ var number_of_monsters;
 var game_timer;
 var type_of_keys;
 var keyboard_choise = "set_keys";
-var music = new Audio();
 var song;
 
 function keyChosenUp(event) {
@@ -117,9 +116,6 @@ function updateSettingsOnScreenGame() {
     document.getElementById("25_color").innerHTML = color_twenty_five_point_ball
     document.getElementById("15_color").innerHTML = color_fifteen_point_ball
     document.getElementById("5_color").innerHTML = color_five_point_ball
-    // document.getElementById("5_quantity").innerHTML = number_of_fives
-    // document.getElementById("15_quantity").innerHTML = number_of_fifteens
-    // document.getElementById("25_quantity").innerHTML = number_of_twenty_fives
     document.getElementById("total_quantity").innerHTML = number_of_balls
     if(keyboard_choise === "set_keys"){
         if(type_of_keys === "updown"){
@@ -216,16 +212,3 @@ function get_number_of_monsters(monsters) {
     return 0
 }
 
-
-function clearInput(id,event){
-    document.getElementById(id).value+=event.key
-}
-
-
-function resetAllSettings(){
-    $('#GameTime').val(null);
-    $('#NumOfBalls').val(null);
-    $('#5_ball_color').val(null);
-    $('#15_ball_color').val(null);
-    $('#25_ball_color').val(null);
-}

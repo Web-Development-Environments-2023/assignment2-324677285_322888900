@@ -108,7 +108,9 @@ function Start() {
 		"keydown",
 		function(e) {
 			keysDown[e.keyCode] = true;
-			e.preventDefault();
+			if(e.key === "ArrowLeft" || e.key === "ArrowRight" || e.key === "ArrowDown" || e.key === "ArrowUp" ) {
+				e.preventDefault();
+			}
 		},
 		false
 	);
@@ -116,7 +118,9 @@ function Start() {
 		"keyup",
 		function(e) {
 			keysDown[e.keyCode] = false;
-			e.preventDefault();
+			if(e.key === "ArrowLeft" || e.key === "ArrowRight" || e.key === "ArrowDown" || e.key === "ArrowUp" ) {
+				e.preventDefault();
+			}
 		},
 		false
 	);
@@ -272,7 +276,7 @@ function checkIfItsFood(x, y){
 	else if(board[x][y] === 'skull'){
 		return -3
 	}
-	else if(board[x][y]==='new clock'){
+	else if(board[x][y] === 'new clock'){
 		return -4
 	}
 	else return 1;

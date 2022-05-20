@@ -100,7 +100,7 @@ function checkSpecialFood(food){
 
     }
     else{
-        eaten_clock=5
+        eaten_clock = 10;
     }
 
 
@@ -112,7 +112,7 @@ function drawClock(){
     context.drawImage(pill_img, clock_location.i * square_size - border_size, clock_location.j * square_size - border_size, pacman_size, pacman_size);
     board[clock_location.i][clock_location.j]="."
     clock_location=moveRandomExtra(clock_location)
-    board[clock_location.i][clock_location.j]="clock"
+    board[clock_location.i][clock_location.j] = "clock"
 }
 function drawSkull(){
     context.drawImage(skull_img, skull_location.i * square_size - border_size, skull_location.j * square_size - border_size, pacman_size, pacman_size);
